@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegistrationActivity"
+    android:background="@color/white">
+
+
+<ImageView
+        android:id="@+id/products_reg"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/newproducts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:textColor="#888887"
+        android:id="@+id/editText_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_background"
+        android:drawableLeft="@drawable/ic_person_or"
+        android:drawablePadding="13dp"
+        android:elevation="3dp"
+        android:padding="13dp"
+        android:text="Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/products_reg"
+        app:layout_constraintWidth_percent=".8" />
+
+    <EditText
+        android:id="@+id/Email_reg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_background"
+        android:drawableLeft="@drawable/ic_baseline_person_pin"
+        android:drawablePadding="13dp"
+        android:elevation="3dp"
+        android:padding="13dp"
+        android:text="Email"
+        android:textColor="#888887"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_name"
+        app:layout_constraintWidth_percent=".8" />
+
+    <EditText
+        android:id="@+id/password_reg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edittext_background"
+        android:drawableLeft="@drawable/ic_baseline_key_or"
+        android:drawablePadding="13dp"
+        android:elevation="3dp"
+        android:padding="13dp"
+        android:text="Password"
+        android:textColor="#888887"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Email_reg"
+        app:layout_constraintWidth_percent=".8" />
+
+    <Button
+        android:id="@+id/reg_btn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:padding="14dp"
+        android:text="Sign Up"
+        android:background="@color/orange"
+        android:textSize="18dp"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_reg" />
+
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bạn đã có tài khoản? "
+        android:textStyle="bold"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reg_btn"
+        app:layout_constraintHorizontal_bias=".4"/>
+
+    <TextView
+        android:id="@+id/sign_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        android:textColor="@color/orange"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_view"
+        app:layout_constraintTop_toTopOf="@+id/text_view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

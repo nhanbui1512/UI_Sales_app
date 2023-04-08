@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.tikoshopping.API.APIService;
+import com.example.tikoshopping.Service.Login;
+import com.example.tikoshopping.Service.LoginResult;
 import com.example.tikoshopping.Service.User;
 import com.example.tikoshopping.Service.UserData;
 import com.google.gson.Gson;
@@ -29,7 +31,7 @@ public class CartFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.cart_fragment,container,false);
 
-        getAllUser();
+        Login();
         return view;
 
     }
@@ -47,8 +49,27 @@ public class CartFragment extends Fragment {
 
             @Override
             public void onFailure(Call<UserData> call, Throwable t) {
-                Log.e("error: "  ,t.getMessage().toString());
+                Log.e("Call API Error: "  ,t.getMessage().toString());
                 Log.e("Call API" , " Is Error");
+            }
+        });
+    }
+
+    private void Login ()
+    {
+        Login login = new Login("admin", "admin");
+        APIService.apiService.Login(login).enqueue(new Callback<LoginResult>() {
+            @Override
+            public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
+                LoginResult result = response.body();
+                if(result != null && result.getResult()){
+                    Log.e("Token: ", result.getToken());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResult> call, Throwable t) {
+                Log.e("API error: " , t.getMessage());
             }
         });
     }

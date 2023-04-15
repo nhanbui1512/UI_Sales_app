@@ -1,19 +1,21 @@
-package com.example.tikoshopping.Service;
+package com.example.tikoshopping.models;
 
 public class User {
-    private int IDUser;
+
+    private int IDUser ;
     private String UserName ;
-    private String Email ;
+    private String Email;
     private String PhoneNumber ;
     private String AvatarPath ;
     private int Access ;
 
-    public int getUserID() {
+
+    public int getIDUser() {
         return IDUser;
     }
 
-    public void setUserID(int userID) {
-        IDUser = userID;
+    public void setIDUser(int IDUser) {
+        this.IDUser = IDUser;
     }
 
     public String getUserName() {
@@ -56,12 +58,16 @@ public class User {
         Access = access;
     }
 
-    public User(int userID, String userName, String email, String phoneNumber, String avatarPath, int access) {
-        IDUser = userID;
+    public User(int IDUser, String userName, String email, String phoneNumber, String avatarPath, int access) {
+        this.IDUser = IDUser;
         UserName = userName;
         Email = email;
         PhoneNumber = phoneNumber;
         AvatarPath = avatarPath;
         Access = access;
     }
+
+
+
+
 }

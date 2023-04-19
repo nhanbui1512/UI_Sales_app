@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".LoginActivity"
-    android:background="@color/white">
+    tools:ignore="ExtraText">
 
     <ImageView
         android:id="@+id/products_log"
@@ -17,21 +18,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/Email_log"
+
+        android:id="@+id/userName_log"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:background="@drawable/edittext_background"
         android:drawableLeft="@drawable/ic_person_or"
-        android:layout_marginTop="20dp"
         android:drawablePadding="13dp"
         android:elevation="3dp"
         android:padding="13dp"
-        android:text="Email"
+        android:text="UserName"
         android:textColor="#888887"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/products_log"
-        app:layout_constraintWidth_percent=".8" />
+        app:layout_constraintWidth_percent=".8"
+
+    />
 
     <EditText
         android:id="@+id/password_log"
@@ -47,8 +51,9 @@
         android:textColor="#888887"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Email_log"
+        app:layout_constraintTop_toBottomOf="@+id/userName_log"
         app:layout_constraintWidth_percent=".8" />
+
 
     <Button
         android:id="@+id/log_btn"
@@ -69,14 +74,13 @@
         android:id="@+id/text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:text="Bạn chưa có tài khoản?  "
         android:textStyle="bold"
-        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/log_btn"
         app:layout_constraintHorizontal_bias=".4"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/log_btn" />
 
     <TextView
         android:id="@+id/sign_up"
@@ -84,11 +88,11 @@
         android:layout_height="wrap_content"
         android:text="Đăng ký"
         android:textColor="@color/orange"
-        android:textStyle="bold"
         android:textSize="16sp"
-        app:layout_constraintHorizontal_bias="0"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/text_view"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/text_view"
         app:layout_constraintTop_toTopOf="@+id/text_view" />
 

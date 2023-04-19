@@ -39,20 +39,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        User user1 = new User(1,"NhanBUi","buithiennhan0345@gmail.com", "0913946857","path",1);
-        User user2 = new User(2,"NhanBUi","buithiennhan0345@gmail.com", "0913946857","path",1);
-        ArrayList<User> list = new ArrayList<>();
-        list.add(user1);
-        list.add(user2);
-        UserData data = new UserData(list);
-
-        Gson gson = new Gson();
-        String strJson = gson.toJson(data);
-        Log.e("JSON: " , strJson);
-
-
-
-
-
     }
 }

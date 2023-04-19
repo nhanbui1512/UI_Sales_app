@@ -28,16 +28,17 @@
             android:text="Tổng Tiền: $26"
 
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
+
         <Button
             android:id="@+id/btnDatHang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_margin="8dp"
-            android:text="Đặt hàng"
-            android:textColor="@color/orange"
             android:background="@color/color_button"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
+            android:text="MUA HÀNG"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="@color/orange" />
 
 
     </LinearLayout>

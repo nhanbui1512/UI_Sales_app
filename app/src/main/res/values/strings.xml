@@ -4,4 +4,7 @@
     <string name="title_cart">Cart</string>
     <string name="title_profile">Profile</string>
     <string name="exit">exit</string>
+    <string name="title_MyStore">Sản phẩm của tôi</string>
+    <string name="title_ChoDuyet">Chờ duyệt</string>
+
 </resources>

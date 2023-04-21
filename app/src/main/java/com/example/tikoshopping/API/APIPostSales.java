@@ -16,7 +16,7 @@ import retrofit2.http.QueryMap;
 public interface APIPostSales {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
     APIPostSales apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.0.101:3000")
+            .baseUrl("http://192.168.1.9:3000")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(APIPostSales.class);

@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -30,6 +31,7 @@ public class ProfileFragment extends Fragment {
     private EditText inputEmail ;
     private EditText inputPhoneNumber ;
     private ImageView avatar ;
+    private Button Sua,DoiMK,Up;
 
     public static final int PICK_IMAGE_REQUEST = 101;
 
@@ -43,13 +45,22 @@ public class ProfileFragment extends Fragment {
         inputEmail = view.findViewById(R.id.pro_email);
         inputPhoneNumber = view.findViewById(R.id.pro_number);
         avatar = view.findViewById(R.id.profile_img);
-        
-        
+        Sua = view.findViewById(R.id.btn_sua);
+        DoiMK = view.findViewById(R.id.btn_doimk);
+        Up = view.findViewById(R.id.btn_up);
+
+
+        DoiMK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                startActivity(new Intent(ProfileFragment.this,ChangePassword.class));
+            }
+        });
+
         avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, PICK_IMAGE_REQUEST);
 
             }
         });
@@ -80,6 +91,7 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
+
 
 
 

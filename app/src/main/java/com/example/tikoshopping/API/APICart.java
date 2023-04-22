@@ -21,7 +21,7 @@ import retrofit2.http.POST;
 public interface APICart {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
     APICart apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.0.101:3000")
+            .baseUrl("http://10.10.53.234:3000")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(APICart.class);

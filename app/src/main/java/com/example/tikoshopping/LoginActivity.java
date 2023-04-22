@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                 LoginResult result = response.body();
                 Log.e("API login", "Call API Thanh COng");
                 if(result != null && result.getResult()){
-                    Log.e("Login " , result.getToken());
+                    Log.e("Login " , result.getUser().getEmail());
                     isLoginSuccess = result.getResult() ;
                     startActivity(new Intent(LoginActivity.this,ShopActivity.class));
                 }
@@ -103,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoginResult> call, Throwable t) {
+                Toast.makeText(LoginActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
                 Log.e("Login " , t.getMessage());
                 isLoginSuccess = false;
             }

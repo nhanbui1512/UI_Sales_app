@@ -2,13 +2,23 @@ package com.example.tikoshopping.Service;
 
 public class LoginResult {
     private Boolean result ;
+    private User user ;
     private String message ;
     private String token ;
 
-    public LoginResult(Boolean result, String message, String token) {
+    public LoginResult(Boolean result,User user, String message, String token) {
         this.result = result;
         this.message = message;
         this.token = token;
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Boolean getResult() {

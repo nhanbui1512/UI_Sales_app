@@ -12,6 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.Query;
 
 public interface APIOrders {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
@@ -20,11 +21,23 @@ public interface APIOrders {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(APIOrders.class);
+
+    // Order 1 đơn hàng ( có thể 1 hoặc nhiều sản phẩm )
     @Headers({
             "Content-Type: application/json",
             "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MTA0OTQxOSwiZXhwIjoxNjgzNjQxNDE5fQ.vHEF_WIe1D_g3IzdkjHRL4vGasFaNB3rlATBRZw89uE"
     })
     @GET("/api/order/orders")
     Call<ResultBase> orders(@Body Bill bill);
+
+
+    // Lấy ra thông tin của 1 hóa đơn
+    @Headers({
+            "Content-Type: application/json",
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MTA0OTQxOSwiZXhwIjoxNjgzNjQxNDE5fQ.vHEF_WIe1D_g3IzdkjHRL4vGasFaNB3rlATBRZw89uE"
+    })
+    @GET("/api/order/find")
+    Call<com.example.tikoshopping.Service.Order_Model.Bill> getAllOrderByBill(@Query("bill_id")  int idBill);
+
 
 }

@@ -32,6 +32,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 return new HomeAdminFragment();
             case 5:
                 return new HomeAdminFragment();
+
+
         }
         return new HomeFragment();
     }

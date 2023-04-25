@@ -2,6 +2,7 @@ package com.example.tikoshopping.API;
 
 import com.example.tikoshopping.Service.ResultBase;
 import com.example.tikoshopping.Service.ResultPostSales;
+import com.example.tikoshopping.Service.ResultRecommended;
 import com.example.tikoshopping.Service.ResultTypeGoods;
 import com.example.tikoshopping.Service.Sales.FormCreatePostSales;
 import com.google.gson.Gson;
@@ -29,30 +30,40 @@ import retrofit2.http.QueryMap;
 public interface APIPostSales {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
     APIPostSales apiService = new Retrofit.Builder()
-            .baseUrl("http://10.10.53.234:3000")
+//            .baseUrl("http://10.10.36.201:3000")
+            .baseUrl("http://192.168.1.153:3000")
+//            .baseUrl("http://192.168.5.240:3000")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(APIPostSales.class);
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MTk3MTE3NCwiZXhwIjoxNjg0NTYzMTc0fQ.pvsYNnuY5MYR24hWFQhBVCuDI2i1QfWWoiFABfGjix8"
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjQyMjMwMSwiZXhwIjoxNjg1MDE0MzAxfQ.z-9xUBo-eIxX8-uqTUU_hOB2SUjogUS8AEApUq_5S58"
+
     })
     @GET("/api/sales/getall")
     Call<ResultPostSales> getAllPostSales();
 
 
+
+
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MTk3MTE3NCwiZXhwIjoxNjg0NTYzMTc0fQ.pvsYNnuY5MYR24hWFQhBVCuDI2i1QfWWoiFABfGjix8"
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjQyMjMwMSwiZXhwIjoxNjg1MDE0MzAxfQ.z-9xUBo-eIxX8-uqTUU_hOB2SUjogUS8AEApUq_5S58"
     })
     @GET("/api/sales/getrand")
     Call<ResultPostSales> getPostSalesRandom(@Query("rand_number") int randNumber);
 
 
+    @GET("/api/sales/getrand")
+    Call<ResultRecommended> getRecommendedRandom(@Query("rand_number") int randNumber);
+
+
+
     // Xóa bài bán hàng
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MTA0OTQxOSwiZXhwIjoxNjgzNjQxNDE5fQ.vHEF_WIe1D_g3IzdkjHRL4vGasFaNB3rlATBRZw89uE"
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjQyMjMwMSwiZXhwIjoxNjg1MDE0MzAxfQ.z-9xUBo-eIxX8-uqTUU_hOB2SUjogUS8AEApUq_5S58"
     })
     @DELETE("/api/sales/delete")
     Call<ResultBase> DeletePostSales (@Query("id_post") int idPost);
@@ -61,7 +72,7 @@ public interface APIPostSales {
 
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MTA0OTQxOSwiZXhwIjoxNjgzNjQxNDE5fQ.vHEF_WIe1D_g3IzdkjHRL4vGasFaNB3rlATBRZw89uE"
+            "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjQyMjMwMSwiZXhwIjoxNjg1MDE0MzAxfQ.z-9xUBo-eIxX8-uqTUU_hOB2SUjogUS8AEApUq_5S58"
     })
     @POST("/api/sales/add")
     Call<ResultBase> createPostSales(@Part("title") RequestBody title,
@@ -72,7 +83,7 @@ public interface APIPostSales {
 
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MTA0OTQxOSwiZXhwIjoxNjgzNjQxNDE5fQ.vHEF_WIe1D_g3IzdkjHRL4vGasFaNB3rlATBRZw89uE"
+            "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjQyMjMwMSwiZXhwIjoxNjg1MDE0MzAxfQ.z-9xUBo-eIxX8-uqTUU_hOB2SUjogUS8AEApUq_5S58"
     })
     @GET("/api/sales/getbytypeid")
     Call<ResultPostSales> getPostSalesByTypeGoodsID(@Query("id_type") int idType);

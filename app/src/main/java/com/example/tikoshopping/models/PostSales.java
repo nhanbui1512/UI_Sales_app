@@ -1,9 +1,10 @@
 package com.example.tikoshopping.models;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 
-public class PostSales
+public class PostSales implements Serializable
 {
     private int IDPost;
     private int IDUser;
@@ -14,8 +15,11 @@ public class PostSales
     private Date UpdateAt ;
     private String NameType;
     private ArrayList<Image> images;
+    private int Discount;
+    private int Price;
 
-    public PostSales(int idPost, int idUser, String userName, String title, String description, Date createAt, Date updateAt, String nameType, ArrayList<Image> images) {
+
+    public PostSales(int idPost, int idUser, String userName, String title, String description, Date createAt, Date updateAt, String nameType, ArrayList<Image> images, int discount, int price) {
         IDPost = idPost;
         IDUser = idUser;
         UserName = userName;
@@ -24,7 +28,17 @@ public class PostSales
         CreateAt = createAt;
         UpdateAt = updateAt;
         NameType = nameType;
+        Discount = discount;
         this.images = images;
+        Price = price;
+    }
+
+    public int getDiscount() {
+        return Discount;
+    }
+
+    public void setDiscount(int discount) {
+        Discount = discount;
     }
 
     public int getIDPost() {
@@ -45,6 +59,15 @@ public class PostSales
 
     public String getUserName() {
         return UserName;
+    }
+
+
+    public void setPrice(int price) {
+        Price = price;
+    }
+    public int getPrice()
+    {
+        return this.Price;
     }
 
     public void setUserName(String userName) {

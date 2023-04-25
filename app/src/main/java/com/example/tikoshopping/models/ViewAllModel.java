@@ -1,16 +1,20 @@
 package com.example.tikoshopping.models;
 
-public class RecommendedModel {
+import java.io.Serializable;
+
+public class ViewAllModel implements Serializable {
     String name;
     String description;
-    String rating;
+    String discount;
+    String type;
     String img_url;
     int price;
 
-    public RecommendedModel(String name, String description, String rating, String img_url, int price) {
+    public ViewAllModel(String name, String description, String discount, String type, String img_url, int price) {
         this.name = name;
         this.description = description;
-        this.rating = rating;
+        this.discount = discount;
+        this.type = type;
         this.img_url = img_url;
         this.price = price;
     }
@@ -31,12 +35,20 @@ public class RecommendedModel {
         this.description = description;
     }
 
-    public String getRating() {
-        return rating;
+    public String getDiscount() {
+        return discount;
     }
 
-    public void setRating(String rating) {
-        this.rating = rating;
+    public void setDiscount(String discount) {
+        this.discount = discount;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getImg_url() {

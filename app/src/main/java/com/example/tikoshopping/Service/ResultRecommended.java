@@ -1,28 +1,24 @@
 package com.example.tikoshopping.Service;
 
-import com.example.tikoshopping.models.PostSales;
 import com.example.tikoshopping.models.RecommendedModel;
 
 import java.util.ArrayList;
 
-public class ResultPostSales
-{
+public class ResultRecommended {
     private Boolean result ;
-    private ArrayList<PostSales> data ;
+    private ArrayList<RecommendedModel> data ;
 
-    public ResultPostSales(Boolean result, ArrayList<PostSales> data) {
+    public ResultRecommended(Boolean result, ArrayList<RecommendedModel> data) {
         this.result = result;
         this.data = data;
 
-
     }
 
-    public ArrayList<PostSales> getData() {
+    public ArrayList<RecommendedModel> getData() {
         return data;
     }
 
-
-    public void setData(ArrayList<PostSales> data) {
+    public void setData(ArrayList<RecommendedModel> data) {
         this.data = data;
     }
 

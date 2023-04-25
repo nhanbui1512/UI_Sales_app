@@ -45,8 +45,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.e("Login BTN", "Clicked");
                 callAPILogin();
-
-
             }
         });
 

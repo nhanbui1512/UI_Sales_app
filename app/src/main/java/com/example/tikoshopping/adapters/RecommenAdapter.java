@@ -2,7 +2,6 @@ package com.example.tikoshopping.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +17,11 @@ import com.example.tikoshopping.models.PostSales;
 
 import java.util.List;
 
-public class PostSalesAdapter extends RecyclerView.Adapter<PostSalesAdapter.ViewHolder> {
+public class RecommenAdapter extends RecyclerView.Adapter<RecommenAdapter.ViewHolder> {
     private List<PostSales> mData = null;
     private Context context;
     String url ="https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg";
-    public PostSalesAdapter(List<PostSales> data,Context context) {
+    public RecommenAdapter(List<PostSales> data, Context context) {
         mData = data;
         this.context = context;
     }
@@ -30,17 +29,16 @@ public class PostSalesAdapter extends RecyclerView.Adapter<PostSalesAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.popular_item, parent, false);
+                .inflate(R.layout.recommended_items, parent, false);
         return new ViewHolder(view);
     }
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         PostSales item = mData.get(position);
         holder.name.setText(item.getTitle());
-        holder.pop_des.setText(item.getDescription());
-        holder.discount.setText("Discount " + item.getDiscount()+ "% Off");
+        holder.description.setText(item.getDescription());
 //        holder.price.setText(item.getPrice().toString());
-        Glide.with(context).load("http://192.168.1.153:3000"+item.getImages().get(0).getPath()).into(holder.popImg);
+        Glide.with(context).load("http://192.168.1.153:3000"+item.getImages().get(0).getPath()).into(holder.postImage);
 //        Picasso.get().load(mData.get(position).getImg_url()).into(holder.recImg);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -66,15 +64,15 @@ public class PostSalesAdapter extends RecyclerView.Adapter<PostSalesAdapter.View
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView popImg;
-        TextView name,pop_des,discount,price;
+        ImageView postImage;
+        TextView name,description;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.pop_prod);
-            pop_des = itemView.findViewById(R.id.pop_des);
-            popImg = itemView.findViewById(R.id.pop_img);
-            discount = itemView.findViewById(R.id.pop_discount);
+            name = itemView.findViewById(R.id.rec_prod);
+            description = itemView.findViewById(R.id.rec_des);
+            postImage = itemView.findViewById(R.id.rec_img);
+
         }
     }
 }

@@ -2,6 +2,7 @@ package com.example.tikoshopping;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,18 +26,21 @@ public class AdminActivity extends AppCompatActivity {
         mViewPagerAdmin  = findViewById(R.id.view_pager_admin);
         setUpViewPager();
 
-        btnNavigationViewAdmin.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+        btnNavigationViewAdmin.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.navigation_user:
-                        mViewPagerAdmin.setCurrentItem(0);
+                        Toast.makeText(AdminActivity.this, "User", Toast.LENGTH_SHORT).show();
+                        mViewPagerAdmin.setCurrentItem(3);
                         break;
                     case R.id.navigation_pending:
-                        mViewPagerAdmin.setCurrentItem(1);
+                        Toast.makeText(AdminActivity.this, "Pending", Toast.LENGTH_SHORT).show();
+                        mViewPagerAdmin.setCurrentItem(4);
                         break;
                     case R.id.navigation_profile_admin:
-                        mViewPagerAdmin.setCurrentItem(2);
+                        Toast.makeText(AdminActivity.this, "Profile Admin", Toast.LENGTH_SHORT).show();
+                        mViewPagerAdmin.setCurrentItem(5);
                         break;
                 }
 
@@ -61,13 +65,13 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 switch (position){
-                    case 0:
+                    case 3:
                         btnNavigationViewAdmin.getMenu().findItem(R.id.navigation_user).setChecked(true);
                         break;
-                    case 1:
+                    case 4:
                         btnNavigationViewAdmin.getMenu().findItem(R.id.navigation_pending).setChecked(true);
                         break;
-                    case 2:
+                    case 5:
                         btnNavigationViewAdmin.getMenu().findItem(R.id.navigation_profile_admin).setChecked(true);
                         break;
                 }

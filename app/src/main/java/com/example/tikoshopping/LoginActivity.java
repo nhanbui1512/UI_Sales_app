@@ -85,29 +85,30 @@ public class LoginActivity extends AppCompatActivity {
         String pass = password.getText().toString();
 
         Login info = new Login(name,pass);
-
-        APILogin.apiService.Login(info).enqueue(new Callback<LoginResult>() {
-            @Override
-            public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
-                LoginResult result = response.body();
-                Log.e("API login", "Call API Thanh COng");
-                if(result != null && result.getResult()){
-                    Log.e("Login " , result.getUser().getEmail());
-                    isLoginSuccess = result.getResult() ;
-                    startActivity(new Intent(LoginActivity.this,ShopActivity.class));
-                }
-                else{
-                    Toast.makeText(LoginActivity.this, "Incorrect account or password", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<LoginResult> call, Throwable t) {
-                Toast.makeText(LoginActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
-                Log.e("Login " , t.getMessage());
-                isLoginSuccess = false;
-            }
-        });
+        // test
+        startActivity(new Intent(LoginActivity.this,AdminActivity.class));
+//        APILogin.apiService.Login(info).enqueue(new Callback<LoginResult>() {
+//            @Override
+//            public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
+//                LoginResult result = response.body();
+//                Log.e("API login", "Call API Thanh COng");
+//                if(result != null && result.getResult()){
+//                    Log.e("Login " , result.getUser().getEmail());
+//                    isLoginSuccess = result.getResult() ;
+//                    startActivity(new Intent(LoginActivity.this,ShopActivity.class));
+//                }
+//                else{
+//                    Toast.makeText(LoginActivity.this, "Incorrect account or password", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<LoginResult> call, Throwable t) {
+//                Toast.makeText(LoginActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
+//                Log.e("Login " , t.getMessage());
+//                isLoginSuccess = false;
+//            }
+//        });
 
     }
 }

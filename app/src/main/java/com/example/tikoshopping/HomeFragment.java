@@ -127,7 +127,7 @@ public class HomeFragment extends Fragment {
                 if(result != null ){
                     Log.e("API postsales" ,response.body().toString());
                     recommendedModelList = result.getData();
-                    recommenAdapter = new RecommenAdapter(posts,getContext());
+                    recommenAdapter = new RecommenAdapter(recommendedModelList,getContext());
                     recommendRecyclerView.setAdapter(recommenAdapter);
                     LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
                     recommendRecyclerView.setLayoutManager(layoutManager);

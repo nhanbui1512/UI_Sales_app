@@ -11,9 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.tikoshopping.API._Constant;
 import com.example.tikoshopping.models.ViewAllModel;
 
 public class ProductDetailsActivity extends AppCompatActivity {
+    TextView quantity;
+    int totalquantity = 1;
+    int totalPrice = 0;
     ImageView detailedImg;
     TextView name,price,description;
     Button addToCart;
@@ -31,12 +35,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
         String name = intent.getStringExtra("Name");
         String description = intent.getStringExtra("Description");
         int price = intent.getIntExtra("Price",1);
-        String path = "http://192.168.1.153:3000"+intent.getStringExtra("Path");
+        String path = _Constant.baseUrl +intent.getStringExtra("Path");
         setContentView(R.layout.activity_product_details);
 
 
         initView();
         initData(name,description,price,path);
+        AddToCart();
 
     }
 
@@ -46,12 +51,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
         description.setText(Description);
         price.setText("Giá: "+Price+"VND");
         Glide.with(getApplicationContext()).load(path).into(detailedImg);
-//        price.setText(postSales.getPrice();postSales
-//
+
+        totalPrice =Price * totalquantity;
     }
 
     private void initView()
     {
+        quantity = findViewById(R.id.quantity);
         toolbar = findViewById(R.id.toolbar);
         detailedImg = findViewById(R.id.detailed_img);
         addItem = findViewById(R.id.add_img);
@@ -69,6 +75,36 @@ public class ProductDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+    }
+
+    private void AddToCart()
+    {
+        addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        addItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(totalquantity < 10)
+                {
+                    totalquantity++;
+                    quantity.setText(String.valueOf(totalquantity));
+                }
+            }
+        });
+        removeItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(totalquantity > 0)
+                {
+                    totalquantity--;
+                    quantity.setText(String.valueOf(totalquantity));
+                }
             }
         });
     }

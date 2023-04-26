@@ -25,7 +25,7 @@ import retrofit2.http.Query;
 public interface APICart {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
     APICart apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.153:3000")
+            .baseUrl(_Constant.baseUrl)
 //            .baseUrl("http://192.168.5.240:3000")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
@@ -34,7 +34,7 @@ public interface APICart {
     // Lấy ra tất cả sản phẩm trong giỏ hàng
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjI1MTI5NiwiZXhwIjoxNjg0ODQzMjk2fQ.UPZzoH8BioxSSyotnjWu2bbTHSKaSdEf9BUnAth_QQ4"
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjUwNDMwMCwiZXhwIjoxNjg1MDk2MzAwfQ.pGpiPOqL_FWBGnBoTq4agwFfbQi8bcwat7SU9VKwNBs"
     })
     @GET("/api/cart/getall")
     Call<ResultCart> getAllProduct ();
@@ -43,7 +43,7 @@ public interface APICart {
     // Thêm 1 sản phẩm vào giỏ hàng
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjI1MTI5NiwiZXhwIjoxNjg0ODQzMjk2fQ.UPZzoH8BioxSSyotnjWu2bbTHSKaSdEf9BUnAth_QQ4"
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjUwNDMwMCwiZXhwIjoxNjg1MDk2MzAwfQ.pGpiPOqL_FWBGnBoTq4agwFfbQi8bcwat7SU9VKwNBs"
     })
     @POST("/api/cart/add")
     Call<ResultAddProductIntoCart> AddProductInCart(@Body FormAddProductIntoCart form);
@@ -52,7 +52,7 @@ public interface APICart {
 
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MTA0OTQxOSwiZXhwIjoxNjgzNjQxNDE5fQ.vHEF_WIe1D_g3IzdkjHRL4vGasFaNB3rlATBRZw89uE"
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjUwNDMwMCwiZXhwIjoxNjg1MDk2MzAwfQ.pGpiPOqL_FWBGnBoTq4agwFfbQi8bcwat7SU9VKwNBs"
     })
     @PUT("/api/cart/updatecount")
     Call<ResultBase> UpdateCountProductInCart (@Query("id_cart") int idCart, @Query("count") int count);
@@ -61,7 +61,7 @@ public interface APICart {
 //     Xóa 1 Sản phẩm trong giỏ hàng
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MTA0OTQxOSwiZXhwIjoxNjgzNjQxNDE5fQ.vHEF_WIe1D_g3IzdkjHRL4vGasFaNB3rlATBRZw89uE"
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjUwNDMwMCwiZXhwIjoxNjg1MDk2MzAwfQ.pGpiPOqL_FWBGnBoTq4agwFfbQi8bcwat7SU9VKwNBs"
     })
     @DELETE("/api/cart/delete")
     Call<ResultBase> DeleteProductInCart (@Query("id_cart") int idCart);
@@ -70,7 +70,7 @@ public interface APICart {
 
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MTA0OTQxOSwiZXhwIjoxNjgzNjQxNDE5fQ.vHEF_WIe1D_g3IzdkjHRL4vGasFaNB3rlATBRZw89uE"
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjUwNDMwMCwiZXhwIjoxNjg1MDk2MzAwfQ.pGpiPOqL_FWBGnBoTq4agwFfbQi8bcwat7SU9VKwNBs"
     })
     @DELETE("/api/cart/deleteall")
     Call<ResultBase> DeleteAllInCart ();

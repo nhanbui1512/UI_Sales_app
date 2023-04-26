@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    app:cardElevation="3dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:background="@color/color_button"
         android:layout_width="match_parent"
         android:padding="10dp"
-
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:id="@+id/linearLayout3"
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -23,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/rec_img"
+                android:id="@+id/cart_img"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_vertical"
@@ -35,8 +34,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/name_car"
+                <TextView
+                    android:id="@+id/name_cart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Vegetable"
@@ -44,7 +43,7 @@
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
-                <com.google.android.material.textview.MaterialTextView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -52,7 +51,7 @@
                     android:textColor="@color/whites"
                     android:textSize="14dp" />
 
-                <com.google.android.material.textview.MaterialTextView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -62,18 +61,20 @@
                     android:text="Quantity:10"
                     android:textColor="@color/orange"
                     android:textSize="14dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:id="@+id/cart_quantity"/>
 
-                <com.google.android.material.textview.MaterialTextView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Rs 12,000"
                     android:textColor="@color/orange"
                     android:textSize="14dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:id="@+id/cart_price"/>
 
-                <com.google.android.material.textview.MaterialTextView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -81,7 +82,8 @@
                     android:text="Mô tả sản phẩm"
                     android:textColor="@color/orange"
                     android:textSize="10dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:id="@+id/cart_des"/>
 
 
             </LinearLayout>
@@ -98,12 +100,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <CheckBox
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_margin="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

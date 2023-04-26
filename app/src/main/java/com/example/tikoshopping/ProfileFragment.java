@@ -64,34 +64,9 @@ public class ProfileFragment extends Fragment {
 
             }
         });
-        
-        callAPIProfile();
 
         return view;
     }
-
-
-    public void callAPIProfile(){
-        APIUser.apiService.getMyProfile().enqueue(new Callback<ResultMyProfile>() {
-            @Override
-            public void onResponse(Call<ResultMyProfile> call, Response<ResultMyProfile> response) {
-                ResultMyProfile result = response.body();
-                if(result != null && result.getResult())
-                {
-                    inputUserName.setText(result.getData().getUserName());
-                    inputEmail.setText(result.getData().getEmail());
-                    inputPhoneNumber.setText(result.getData().getPhoneNumber());
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResultMyProfile> call, Throwable t) {
-                Log.e("API myProfile", t.getMessage());
-            }
-        });
-    }
-
 
 
 

@@ -9,8 +9,11 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.tikoshopping.ProductDetailsActivity;
 import com.example.tikoshopping.R;
 import com.example.tikoshopping.Service.CartItem;
+import com.example.tikoshopping.models.PostSales;
 
 import java.util.List;
 
@@ -32,9 +35,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         CartItem item = mData.get(position);
-        holder.orderName.setText(item.getTitle());
-        holder.orderPrice.setText("Giá sản phẩm : " +item.getPrice()+ "VND");
-        holder.orderCount.setText(item.getCount());
+//        holder.title.setText(item.Title);
+//        holder.description.setText(item.Description);
+//        holder.price.setText(Double.toString(item.Price));
 
     }
 
@@ -44,14 +47,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView orderImage;
-        TextView orderName, orderPrice, orderCount;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            orderName = itemView.findViewById(R.id.order_name);
-            orderPrice = itemView.findViewById(R.id.order_price);
-//            orderCount = itemView.findViewById(R.id.count_order);
+//            title = itemView.findViewById(R.id.cart_item);
+//            description = itemView.findViewById(R.id.cart_des);
+//            price = itemView.findViewById(R.id.cart_price);
+//            count = itemView.findViewById(R.id.cart_count);
+
 
         }
     }

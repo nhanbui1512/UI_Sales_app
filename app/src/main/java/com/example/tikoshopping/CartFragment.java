@@ -14,9 +14,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.tikoshopping.API.APICart;
+import com.example.tikoshopping.API.APIService;
 import com.example.tikoshopping.Service.CartItem;
+import com.example.tikoshopping.Service.Login;
+import com.example.tikoshopping.Service.LoginResult;
 import com.example.tikoshopping.Service.ResultCart;
+import com.example.tikoshopping.Service.User;
+import com.example.tikoshopping.Service.UserData;
 import com.example.tikoshopping.adapters.CartAdapter;
+import com.example.tikoshopping.adapters.RecommenAdapter;
+import com.example.tikoshopping.models.PostSales;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -26,7 +34,9 @@ import retrofit2.Response;
 
 public class CartFragment extends Fragment {
 
-    private Button buyBtn ;
+    private RecyclerView ordersRecycleView;
+    private ArrayList<CartItem> orders = new ArrayList<CartItem>();
+    private CartAdapter cartAdapter;
 
     private RecyclerView recyclerView;
     private CartAdapter cartAdapter;
@@ -36,18 +46,10 @@ public class CartFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.cart_fragment,container,false);
-
-        recyclerView = view.findViewById(R.id.cart_recyclerView);
-
-
-        buyBtn = view.findViewById(R.id.btnDatHang);
-        buyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                startActivity(new Intent(CartFragment.this,RegistrationActivity.class));
-            }
-        });
+        ordersRecycleView = view.findViewById(R.id.order_recycler);
         getAllProductInCart();
+
+
         return view;
 
     }
@@ -67,6 +69,11 @@ public class CartFragment extends Fragment {
                     recyclerView.setLayoutManager(layoutManager);
                     Log.e("API gio hang",Double.toString(result.data.get(0).getPrice()));
 
+                    orders = result.data;
+                    cartAdapter = new CartAdapter(orders,getContext());
+                    ordersRecycleView.setAdapter(cartAdapter);
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+                    ordersRecycleView.setLayoutManager(layoutManager);
                 }
                 else {
                     Log.e("Cart", "is empty");

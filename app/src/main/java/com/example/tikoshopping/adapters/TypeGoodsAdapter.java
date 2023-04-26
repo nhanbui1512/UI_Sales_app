@@ -39,7 +39,7 @@ public class TypeGoodsAdapter extends RecyclerView.Adapter<TypeGoodsAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         TypeGoods item = mData.get(position);
-        Glide.with(context).load("http://192.168.1.153:3000"+item.getIconPath()).into(holder.catImg);
+        Glide.with(context).load("http://10.10.28.165:3000"+item.getIconPath()).into(holder.catImg);
         holder.cat_name.setText(item.getNameType());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

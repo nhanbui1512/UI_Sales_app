@@ -44,10 +44,10 @@ public class HomeFragment extends Fragment {
     private ArrayList<TypeGoods> typeGoods;
 
     // recommended
-    private ArrayList<PostSales> recommendedModelList;
-    private RecyclerView recommendRecyclerView;
-    private RecommenAdapter recommenAdapter;
 
+    private RecyclerView recommendRecyclerView;
+    private ArrayList<PostSales> recommendPosts = new ArrayList<PostSales>();
+    private RecommenAdapter recommenAdapter;
 
 
     @Nullable
@@ -68,7 +68,7 @@ public class HomeFragment extends Fragment {
     }
 
 
-        public void CallAPITypeGood(){
+    public void CallAPITypeGood(){
         APITypeGoods.apiService.getAllType().enqueue(new Callback<ResultTypeGoods>() {
             @Override
             public void onResponse(Call<ResultTypeGoods> call, Response<ResultTypeGoods> response) {
@@ -124,10 +124,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<ResultPostSales> call, Response<ResultPostSales> response) {
                 ResultPostSales result = response.body();
-                if(result != null ){
-                    Log.e("API postsales" ,response.body().toString());
-                    recommendedModelList = result.getData();
-                    recommenAdapter = new RecommenAdapter(posts,getContext());
+                if(result != null && result.getResult() && result.getData().size() > 0 ){
+                    Log.e("post", result.getData().get(0).getDescription());
+                    recommendPosts = result.getData();
+                    recommenAdapter = new RecommenAdapter(recommendPosts,getContext());
                     recommendRecyclerView.setAdapter(recommenAdapter);
                     LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
                     recommendRecyclerView.setLayoutManager(layoutManager);

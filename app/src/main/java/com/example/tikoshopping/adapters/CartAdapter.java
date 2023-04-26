@@ -7,33 +7,36 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.tikoshopping.ProductDetailsActivity;
 import com.example.tikoshopping.R;
-import com.example.tikoshopping.models.TypeGoods;
+import com.example.tikoshopping.Service.CartItem;
+import com.example.tikoshopping.models.PostSales;
 
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
-    private List<TypeGoods> mData;
+    private List<CartItem> mData = null;
     private Context context;
-
-    public CartAdapter(List<TypeGoods> mData, Context context) {
-        this.mData = mData;
+    public CartAdapter(List<CartItem> data, Context context) {
+        mData = data;
         this.context = context;
     }
 
-    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.cart_item, parent, false);
-        return new CartAdapter.ViewHolder(view);
+                .inflate(R.layout.order_item, parent, false);
+        return new ViewHolder(view);
     }
-
     @Override
-    public void onBindViewHolder(@NonNull CartAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        CartItem item = mData.get(position);
+//        holder.title.setText(item.Title);
+//        holder.description.setText(item.Description);
+//        holder.price.setText(Double.toString(item.Price));
 
     }
 
@@ -43,13 +46,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView catImg;
-        public TextView cat_name;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            cat_name = itemView.findViewById(R.id.cat_name);
-            catImg = itemView.findViewById(R.id.home_cat_img);
+//            title = itemView.findViewById(R.id.cart_item);
+//            description = itemView.findViewById(R.id.cart_des);
+//            price = itemView.findViewById(R.id.cart_price);
+//            count = itemView.findViewById(R.id.cart_count);
+
+
         }
     }
 }

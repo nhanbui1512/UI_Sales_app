@@ -31,7 +31,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         String name = intent.getStringExtra("Name");
         String description = intent.getStringExtra("Description");
         int price = intent.getIntExtra("Price",1);
-        String path = "http://192.168.1.153:3000"+intent.getStringExtra("Path");
+        String path = "http://10.10.28.165:3000"+intent.getStringExtra("Path");
         setContentView(R.layout.activity_product_details);
 
 

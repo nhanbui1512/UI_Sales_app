@@ -40,7 +40,7 @@ public class PostsByTypeAdapter extends RecyclerView.Adapter<PostsByTypeAdapter.
         holder.view_discount.setText(item.getDiscount()+ "% Off");
 //        holder.price.setText(item.getPrice().toString());
         Log.e("image",item.getImages().get(0).getPath());
-        Glide.with(context).load("http://192.168.1.153:3000"+item.getImages().get(0).getPath()).into(holder.pos_img);
+        Glide.with(context).load("http://10.10.28.165:3000"+item.getImages().get(0).getPath()).into(holder.pos_img);
 //
 //       Picasso.get().load(mData.get(position).getImg_url()).into(holder.recImg);
     }

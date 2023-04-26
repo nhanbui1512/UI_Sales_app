@@ -40,7 +40,7 @@ public class PostSalesAdapter extends RecyclerView.Adapter<PostSalesAdapter.View
         holder.pop_des.setText(item.getDescription());
         holder.discount.setText("Discount " + item.getDiscount()+ "% Off");
 //        holder.price.setText(item.getPrice().toString());
-        Glide.with(context).load("http://192.168.1.153:3000"+item.getImages().get(0).getPath()).into(holder.popImg);
+        Glide.with(context).load("http://10.10.28.165:3000"+item.getImages().get(0).getPath()).into(holder.popImg);
 //        Picasso.get().load(mData.get(position).getImg_url()).into(holder.recImg);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

@@ -25,7 +25,7 @@ import retrofit2.http.Query;
 public interface APICart {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
     APICart apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.153:3000")
+            .baseUrl("http://192.168.0.102:3000")
 //            .baseUrl("http://192.168.5.240:3000")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
@@ -34,7 +34,7 @@ public interface APICart {
     // Lấy ra tất cả sản phẩm trong giỏ hàng
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjI1MTI5NiwiZXhwIjoxNjg0ODQzMjk2fQ.UPZzoH8BioxSSyotnjWu2bbTHSKaSdEf9BUnAth_QQ4"
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjQ4ODE1NiwiZXhwIjoxNjg1MDgwMTU2fQ.YYYaqTvG4UA4w_58E4uhetxb6QbCaSEsyUT01w3_mkk"
     })
     @GET("/api/cart/getall")
     Call<ResultCart> getAllProduct ();
@@ -43,7 +43,7 @@ public interface APICart {
     // Thêm 1 sản phẩm vào giỏ hàng
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjI1MTI5NiwiZXhwIjoxNjg0ODQzMjk2fQ.UPZzoH8BioxSSyotnjWu2bbTHSKaSdEf9BUnAth_QQ4"
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjQ4ODE1NiwiZXhwIjoxNjg1MDgwMTU2fQ.YYYaqTvG4UA4w_58E4uhetxb6QbCaSEsyUT01w3_mkk"
     })
     @POST("/api/cart/add")
     Call<ResultAddProductIntoCart> AddProductInCart(@Body FormAddProductIntoCart form);

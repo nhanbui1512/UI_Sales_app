@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.tikoshopping.API.APILogin;
 import com.example.tikoshopping.Service.Login;
 import com.example.tikoshopping.Service.LoginResult;
+import com.example.tikoshopping.adapters.ViewPagerAdapter;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -86,7 +87,15 @@ public class LoginActivity extends AppCompatActivity {
 
         Login info = new Login(name,pass);
         // test
-        startActivity(new Intent(LoginActivity.this,AdminActivity.class));
+
+        if (name.equals("admin")) {
+            startActivity(new Intent(LoginActivity.this,AdminActivity.class));
+
+        } else if (name.equals("user")) {
+            startActivity(new Intent(LoginActivity.this,ShopActivity.class));
+
+        }
+
 //        APILogin.apiService.Login(info).enqueue(new Callback<LoginResult>() {
 //            @Override
 //            public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {

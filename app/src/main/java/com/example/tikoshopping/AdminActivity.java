@@ -1,5 +1,7 @@
 package com.example.tikoshopping;
 
+import static androidx.fragment.app.FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT;
+
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -51,7 +53,7 @@ public class AdminActivity extends AppCompatActivity {
 
     private void setUpViewPager()
     {
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,1);
         mViewPagerAdmin.setAdapter(viewPagerAdapter);
 
         // vuot sang de chuyen fragment

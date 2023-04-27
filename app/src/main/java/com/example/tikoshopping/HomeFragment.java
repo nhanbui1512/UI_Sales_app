@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -120,6 +122,11 @@ public class HomeFragment extends Fragment {
 
 
     public void CallAPIRecommended(){
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Mypref", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+
+
         APIPostSales.apiService.getPostSalesRandom(4).enqueue(new Callback<ResultPostSales>() {
             @Override
             public void onResponse(Call<ResultPostSales> call, Response<ResultPostSales> response) {

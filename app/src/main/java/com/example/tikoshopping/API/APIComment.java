@@ -22,7 +22,7 @@ import retrofit2.http.Path;
 public interface APIComment {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
     APIComment apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.153:3000")
+            .baseUrl("http://192.168.5.119:3000")
 //            .baseUrl("http://192.168.5.240:3000")//            .baseUrl("http://10.10.36.201:3000")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()

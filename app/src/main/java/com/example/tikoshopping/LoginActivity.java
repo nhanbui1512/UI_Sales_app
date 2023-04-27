@@ -5,7 +5,9 @@ import static com.example.tikoshopping.R.id.userName_log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -40,6 +42,12 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.password_log);
         signUp = findViewById(R.id.sign_up);
         login = findViewById(log_btn);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+
+        String token = sharedPreferences.getString("token", null);
+
+        Log.e("token", token);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,42 +87,44 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void callAPILogin(){
+
         String name = userName.getText().toString();
         String pass = password.getText().toString();
 
         Login info = new Login(name,pass);
-        // test
 
-        if (name.equals("admin")) {
-            startActivity(new Intent(LoginActivity.this,AdminActivity.class));
+        APILogin.apiService.Login(info).enqueue(new Callback<LoginResult>() {
+            @Override
+            public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
+                LoginResult result = response.body();
+                Log.e("API login", "Call API Thanh COng");
+                if(result != null && result.getResult()){ // Nếu đăng nhập tài khoản và mật khẩu đúng
 
-        } else if (name.equals("user")) {
-            startActivity(new Intent(LoginActivity.this,ShopActivity.class));
+                    if (result.getUser().getAccess() == 0) {
 
-        }
+                        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("token", result.getToken());
+                        editor.apply();
 
-//        APILogin.apiService.Login(info).enqueue(new Callback<LoginResult>() {
-//            @Override
-//            public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
-//                LoginResult result = response.body();
-//                Log.e("API login", "Call API Thanh COng");
-//                if(result != null && result.getResult()){
-//                    Log.e("Login " , result.getUser().getEmail());
-//                    isLoginSuccess = result.getResult() ;
-//                    startActivity(new Intent(LoginActivity.this,ShopActivity.class));
-//                }
-//                else{
-//                    Toast.makeText(LoginActivity.this, "Incorrect account or password", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<LoginResult> call, Throwable t) {
-//                Toast.makeText(LoginActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
-//                Log.e("Login " , t.getMessage());
-//                isLoginSuccess = false;
-//            }
-//        });
+                        startActivity(new Intent(LoginActivity.this,AdminActivity.class));
+
+                    } else  { // Nếu đăng nhập sai tài khoản hoặc mật khẩu
+                        startActivity(new Intent(LoginActivity.this,ShopActivity.class));
+                    }
+                }
+                else{
+                    Toast.makeText(LoginActivity.this, "Incorrect account or password", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResult> call, Throwable t) {
+                Toast.makeText(LoginActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
+                Log.e("Login " , t.getMessage());
+                isLoginSuccess = false;
+            }
+        });
 
     }
 }

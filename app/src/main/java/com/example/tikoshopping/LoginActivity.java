@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.tikoshopping.API.APILogin;
 import com.example.tikoshopping.Service.Login;
 import com.example.tikoshopping.Service.LoginResult;
+import com.example.tikoshopping.adapters.ViewPagerAdapter;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -82,29 +83,38 @@ public class LoginActivity extends AppCompatActivity {
         String pass = password.getText().toString();
 
         Login info = new Login(name,pass);
+        // test
 
-        APILogin.apiService.Login(info).enqueue(new Callback<LoginResult>() {
-            @Override
-            public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
-                LoginResult result = response.body();
-                Log.e("API login", "Call API Thanh COng");
-                if(result != null && result.getResult()){
-                    Log.e("Login " , result.getUser().getEmail());
-                    isLoginSuccess = result.getResult() ;
-                    startActivity(new Intent(LoginActivity.this,ShopActivity.class));
-                }
-                else{
-                    Toast.makeText(LoginActivity.this, "Incorrect account or password", Toast.LENGTH_SHORT).show();
-                }
-            }
+        if (name.equals("admin")) {
+            startActivity(new Intent(LoginActivity.this,AdminActivity.class));
 
-            @Override
-            public void onFailure(Call<LoginResult> call, Throwable t) {
-                Toast.makeText(LoginActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
-                Log.e("Login " , t.getMessage());
-                isLoginSuccess = false;
-            }
-        });
+        } else if (name.equals("user")) {
+            startActivity(new Intent(LoginActivity.this,ShopActivity.class));
+
+        }
+
+//        APILogin.apiService.Login(info).enqueue(new Callback<LoginResult>() {
+//            @Override
+//            public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
+//                LoginResult result = response.body();
+//                Log.e("API login", "Call API Thanh COng");
+//                if(result != null && result.getResult()){
+//                    Log.e("Login " , result.getUser().getEmail());
+//                    isLoginSuccess = result.getResult() ;
+//                    startActivity(new Intent(LoginActivity.this,ShopActivity.class));
+//                }
+//                else{
+//                    Toast.makeText(LoginActivity.this, "Incorrect account or password", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<LoginResult> call, Throwable t) {
+//                Toast.makeText(LoginActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
+//                Log.e("Login " , t.getMessage());
+//                isLoginSuccess = false;
+//            }
+//        });
 
     }
 }

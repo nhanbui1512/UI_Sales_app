@@ -14,6 +14,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -22,16 +23,14 @@ import retrofit2.http.Query;
 public interface APIUser {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
     APIUser apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.153:3000")
+            .baseUrl("http://192.168.0.102:3000")
 //            .baseUrl("http://192.168.5.240:3000")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(APIUser.class);
-    @Headers({
-            "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjQ4ODE1NiwiZXhwIjoxNjg1MDgwMTU2fQ.YYYaqTvG4UA4w_58E4uhetxb6QbCaSEsyUT01w3_mkk"})
+
     @GET("/api/user/myprofile")
-    Call<ResultMyProfile> getMyProfile();
+    Call<ResultMyProfile> getMyProfile(@Header("Authorization") String token);
 
 
     @Headers({

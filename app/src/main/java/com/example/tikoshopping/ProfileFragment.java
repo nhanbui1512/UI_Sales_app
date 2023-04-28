@@ -1,12 +1,13 @@
 package com.example.tikoshopping;
 
-import static android.app.Activity.RESULT_OK;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -20,7 +21,6 @@ import android.widget.ImageView;
 import com.example.tikoshopping.API.APIUser;
 import com.example.tikoshopping.Service.ResultMyProfile;
 
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,9 +32,6 @@ public class ProfileFragment extends Fragment {
     private EditText inputPhoneNumber ;
     private ImageView avatar ;
     private Button Sua,DoiMK,Up;
-
-    public static final int PICK_IMAGE_REQUEST = 101;
-
 
 
     @Nullable
@@ -49,6 +46,7 @@ public class ProfileFragment extends Fragment {
         DoiMK = view.findViewById(R.id.btn_doimk);
         Up = view.findViewById(R.id.btn_up);
 
+        callAPIMyProfile();
 
         DoiMK.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +63,35 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+
         return view;
+    }
+
+
+    public void callAPIMyProfile(){
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("MyPrefs",Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+        APIUser.apiService.getMyProfile("Bearer "+token).enqueue(new Callback<ResultMyProfile>() {
+            @Override
+            public void onResponse(Call<ResultMyProfile> call, Response<ResultMyProfile> response) {
+                ResultMyProfile result = response.body();
+                if(result != null && result.getResult()){
+                    inputEmail.setText(result.getData().getEmail());
+                    inputPhoneNumber.setText(result.getData().getPhoneNumber());
+                    inputUserName.setText(result.getData().getUserName());
+
+                }
+                else {
+                    Log.e("Profile", "Du lieu trong");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultMyProfile> call, Throwable t) {
+                Log.e("API Profile" ,t.getMessage());
+            }
+        });
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.tikoshopping.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.tikoshopping.API._Constant;
+import com.example.tikoshopping.ProductDetailsActivity;
 import com.example.tikoshopping.R;
 import com.example.tikoshopping.models.PostSales;
 
@@ -40,9 +43,26 @@ public class PostsByTypeAdapter extends RecyclerView.Adapter<PostsByTypeAdapter.
         holder.view_discount.setText(item.getDiscount()+ "% Off");
 //        holder.price.setText(item.getPrice().toString());
         Log.e("image",item.getImages().get(0).getPath());
-        Glide.with(context).load("http://10.10.28.165:3000"+item.getImages().get(0).getPath()).into(holder.pos_img);
+        Glide.with(context).load(_Constant.baseUrl+item.getImages().get(0).getPath()).into(holder.pos_img);
 //
 //       Picasso.get().load(mData.get(position).getImg_url()).into(holder.recImg);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ProductDetailsActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                int idPost = item.getIDPost();
+//                intent.putExtra("idPost",idPost);
+                intent.putExtra("idPost",item.getIDPost());
+                intent.putExtra("Name",item.getTitle());
+                intent.putExtra("Price",item.getPrice());
+                intent.putExtra("Description",item.getDescription());
+                intent.putExtra("Path",item.getImages().get(0).getPath());
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override

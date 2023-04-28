@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.tikoshopping.API.APICart;
 import com.example.tikoshopping.API.APIService;
@@ -40,12 +39,19 @@ public class CartFragment extends Fragment {
     private ArrayList<CartItem> orders = new ArrayList<CartItem>();
     private CartAdapter cartAdapter;
 
+    private Button btnthanhtoan;
+
+
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.cart_fragment,container,false);
         ordersRecycleView = view.findViewById(R.id.order_recycler);
+        btnthanhtoan = view.findViewById(R.id.btnMuaHang);
         getAllProductInCart();
+        clickthanhtoan();
 
 
         return view;
@@ -60,7 +66,6 @@ public class CartFragment extends Fragment {
                 ResultCart result = response.body();
                 Log.e("Cart", "Call API Thanh Cong");
                 if(result != null && result.result){
-
                     orders = result.data;
                     cartAdapter = new CartAdapter(orders,getContext());
                     ordersRecycleView.setAdapter(cartAdapter);
@@ -78,6 +83,16 @@ public class CartFragment extends Fragment {
             }
         });
 
+    }
+    private void clickthanhtoan()
+    {
+        btnthanhtoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),PayActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }

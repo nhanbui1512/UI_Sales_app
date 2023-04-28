@@ -23,14 +23,14 @@ import retrofit2.http.Part;
 public interface APITypeGoods {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
     APITypeGoods apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.0.102:3000")
+            .baseUrl(_Constant.baseUrl)
 //            .baseUrl("http://192.168.5.240:3000")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(APITypeGoods.class);
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjQ4ODE1NiwiZXhwIjoxNjg1MDgwMTU2fQ.YYYaqTvG4UA4w_58E4uhetxb6QbCaSEsyUT01w3_mkk"
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjUwNDYyMSwiZXhwIjoxNjg1MDk2NjIxfQ.xL_uudjTi0z1HMEz3AHIISvwwwdDKZ_SpPCTQQI6U4o"
     })
     @GET("/api/type/getall")
     Call<ResultTypeGoods> getAllType();
@@ -39,7 +39,7 @@ public interface APITypeGoods {
 
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjQyMjMwMSwiZXhwIjoxNjg1MDE0MzAxfQ.z-9xUBo-eIxX8-uqTUU_hOB2SUjogUS8AEApUq_5S58"
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjUwNDYyMSwiZXhwIjoxNjg1MDk2NjIxfQ.xL_uudjTi0z1HMEz3AHIISvwwwdDKZ_SpPCTQQI6U4o"
     })
     @Multipart
     @POST("/api/type/add")

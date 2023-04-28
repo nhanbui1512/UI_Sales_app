@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.tikoshopping.API._Constant;
 import com.example.tikoshopping.ProductDetailsActivity;
 import com.example.tikoshopping.R;
 import com.example.tikoshopping.models.PostSales;
@@ -40,7 +41,7 @@ public class PostSalesAdapter extends RecyclerView.Adapter<PostSalesAdapter.View
         holder.pop_des.setText(item.getDescription());
         holder.discount.setText("Discount " + item.getDiscount()+ "% Off");
 //        holder.price.setText(item.getPrice().toString());
-        Glide.with(context).load("http://10.10.28.165:3000"+item.getImages().get(0).getPath()).into(holder.popImg);
+        Glide.with(context).load(_Constant.baseUrl+item.getImages().get(0).getPath()).into(holder.popImg);
 //        Picasso.get().load(mData.get(position).getImg_url()).into(holder.recImg);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

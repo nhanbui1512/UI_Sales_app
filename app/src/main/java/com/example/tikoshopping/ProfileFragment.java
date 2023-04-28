@@ -51,14 +51,14 @@ public class ProfileFragment extends Fragment {
         DoiMK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(ProfileFragment.this,ChangePassword.class));
+                startActivity(new Intent(getActivity(),ChangePassword.class));
             }
         });
 
-        avatar.setOnClickListener(new View.OnClickListener() {
+        Up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                Intent intent = new Intent(getActivity(),)
 
             }
         });

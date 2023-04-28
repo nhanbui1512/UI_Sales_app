@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.tikoshopping.API._Constant;
 import com.example.tikoshopping.R;
 import com.example.tikoshopping.ViewAllActivity;
 import com.example.tikoshopping.models.PopularModel;
@@ -39,9 +40,8 @@ public class TypeGoodsAdapter extends RecyclerView.Adapter<TypeGoodsAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         TypeGoods item = mData.get(position);
-        Glide.with(context).load("http://10.10.28.165:3000"+item.getIconPath()).into(holder.catImg);
+        Glide.with(context).load(_Constant.baseUrl+item.getIconPath()).into(holder.catImg);
         holder.cat_name.setText(item.getNameType());
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

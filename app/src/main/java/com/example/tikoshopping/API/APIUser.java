@@ -23,8 +23,7 @@ import retrofit2.http.Query;
 public interface APIUser {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
     APIUser apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.0.102:3000")
-//            .baseUrl("http://192.168.5.240:3000")
+            .baseUrl(_Constant.baseUrl)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(APIUser.class);

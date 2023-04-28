@@ -134,7 +134,7 @@
         android:background="@drawable/custom_button_upgrade"
         android:drawableRight="@drawable/ic_baseline_arrow_circle_up_24"
         android:padding="9dp"
-        android:text="Nâng cấp tài khoản"
+        android:text="Bắt đầu bán hàng"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

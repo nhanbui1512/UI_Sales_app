@@ -9,7 +9,9 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
         app:layout_constraintVertical_bias="0.0"
-        app:title=""
+        app:title="Danh mục loại sản phẩm"
+        app:titleTextColor="@color/white"
+        app:titleMarginStart="95dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/orange"

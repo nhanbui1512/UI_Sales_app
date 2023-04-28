@@ -23,9 +23,28 @@
         android:background="@color/orange"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Chi tiết sản phẩm"
-        app:titleMarginStart="130dp"
         app:titleTextColor="@color/white"
-        tools:layout_editor_absoluteX="6dp" />
+        tools:layout_editor_absoluteX="6dp">
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            >
+            <com.nex3z.notificationbadge.NotificationBadge
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="top|right"
+                android:id="@+id/menu_sl"/>
+
+            <ImageView
+                android:id="@+id/cart_sl"
+                android:layout_width="37dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_baseline_add_shopping_cart_white" />
+        </FrameLayout>
+    </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/detailed_name"

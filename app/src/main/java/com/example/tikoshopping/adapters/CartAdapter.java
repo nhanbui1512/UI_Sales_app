@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.tikoshopping.API._Constant;
 import com.example.tikoshopping.ProductDetailsActivity;
 import com.example.tikoshopping.R;
 import com.example.tikoshopping.Service.CartItem;
@@ -35,9 +36,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         CartItem item = mData.get(position);
-//        holder.title.setText(item.Title);
-//        holder.description.setText(item.Description);
-//        holder.price.setText(Double.toString(item.Price));
+        holder.order_name.setText(item.Title);
+        holder.order_price.setText("Giá sản phẩm: "+ item.Price +" VND");
+        holder.order_count.setText(Integer.toString(item.getCount()));
+        Glide.with(context).load(_Constant.baseUrl+item.getImages().get(0).getPath()).into(holder.order_img);
 
     }
 
@@ -47,15 +49,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView order_img;
+        TextView order_name,order_price,order_count;
 
         public ViewHolder(View itemView) {
             super(itemView);
-//            title = itemView.findViewById(R.id.cart_item);
-//            description = itemView.findViewById(R.id.cart_des);
-//            price = itemView.findViewById(R.id.cart_price);
-//            count = itemView.findViewById(R.id.cart_count);
-
-
+            order_name = itemView.findViewById(R.id.order_name);
+            order_price = itemView.findViewById(R.id.order_price);
+            order_count = itemView.findViewById(R.id.count_order);
+            order_img = itemView.findViewById(R.id.order_img);
         }
     }
 }

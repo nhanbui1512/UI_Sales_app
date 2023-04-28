@@ -5,14 +5,27 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.tikoshopping.API.APICart;
 import com.example.tikoshopping.API._Constant;
+import com.example.tikoshopping.Service.FormAddProductIntoCart;
+import com.example.tikoshopping.Service.ResultAddProductIntoCart;
 import com.example.tikoshopping.models.ViewAllModel;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProductDetailsActivity extends AppCompatActivity {
     TextView quantity;
@@ -35,7 +48,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         String name = intent.getStringExtra("Name");
         String description = intent.getStringExtra("Description");
         int price = intent.getIntExtra("Price",1);
-        String path = "http://10.10.28.165:3000"+intent.getStringExtra("Path");
+        String path = _Constant.baseUrl+intent.getStringExtra("Path");
         setContentView(R.layout.activity_product_details);
 
 
@@ -84,6 +97,29 @@ public class ProductDetailsActivity extends AppCompatActivity {
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int idPost = getIntent().getIntExtra("idPost",0);
+                int count = Integer.parseInt(quantity.getText().toString());
+
+                FormAddProductIntoCart form = new FormAddProductIntoCart(idPost, count);
+                APICart.apiService.AddProductInCart(form).enqueue(new Callback<ResultAddProductIntoCart>() {
+                    @Override
+                    public void onResponse(Call<ResultAddProductIntoCart> call, Response<ResultAddProductIntoCart> response) {
+                        ResultAddProductIntoCart result = response.body();
+                        if(result != null && result.result)
+                        {
+                            Toast.makeText(ProductDetailsActivity.this, "Add product to cart successful", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(ProductDetailsActivity.this, "Add product to cart fail", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResultAddProductIntoCart> call, Throwable t) {
+                        Log.e("ADD Product into Cart" , t.getMessage());
+
+                    }
+                });
 
             }
         });
@@ -108,4 +144,25 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void addToCart(){
+        String saveCurrentDate,saveCurrentTime;
+        Calendar calForDate = Calendar.getInstance();
+
+        SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
+        saveCurrentDate = currentDate.format(calForDate.getTime());
+
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+        saveCurrentTime = currentTime.format(calForDate.getTime());
+
+        final HashMap<String,Object> cartMap = new HashMap<>();
+
+        cartMap.put("producName",viewAllModel.getName());
+        cartMap.put("producPrice",price.getText().toString());
+        cartMap.put("currentDate",saveCurrentDate);
+        cartMap.put("currentTime",saveCurrentTime);
+        cartMap.put("totalQuantity",quantity.getText().toString());
+        cartMap.put("producName",viewAllModel.getName());
+    }
+
 }

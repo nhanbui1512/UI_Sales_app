@@ -31,9 +31,7 @@ import retrofit2.http.QueryMap;
 public interface APIPostSales {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
     APIPostSales apiService = new Retrofit.Builder()
-//            .baseUrl("http://10.10.36.201:3000")
             .baseUrl(_Constant.baseUrl)
-//            .baseUrl("http://192.168.5.240:3000")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(APIPostSales.class);
@@ -46,7 +44,7 @@ public interface APIPostSales {
 
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjUwNDYyMSwiZXhwIjoxNjg1MDk2NjIxfQ.xL_uudjTi0z1HMEz3AHIISvwwwdDKZ_SpPCTQQI6U4o"
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjY2OTQ1MiwiZXhwIjoxNjg1MjYxNDUyfQ.S6megJcAmwwfF2jiiC1LWZsOy4xzv8UVyHsItJhwD-E"
     })
     @GET("/api/sales/getrand")
     Call<ResultPostSales> getPostSalesRandom(@Query("rand_number") int randNumber);
@@ -60,7 +58,7 @@ public interface APIPostSales {
     // Xóa bài bán hàng
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjUwNDYyMSwiZXhwIjoxNjg1MDk2NjIxfQ.xL_uudjTi0z1HMEz3AHIISvwwwdDKZ_SpPCTQQI6U4o"
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjY2OTEyOCwiZXhwIjoxNjg1MjYxMTI4fQ.FKNThQzlIuZCT75k9rPk6q6U-fyrNIr9jlUEKjDiAAw"
     })
     @DELETE("/api/sales/delete")
     Call<ResultBase> DeletePostSales (@Query("id_post") int idPost);
@@ -69,7 +67,7 @@ public interface APIPostSales {
 
     @Headers({
             "Content-Type: application/json",
-            "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjUwNDYyMSwiZXhwIjoxNjg1MDk2NjIxfQ.xL_uudjTi0z1HMEz3AHIISvwwwdDKZ_SpPCTQQI6U4o"
+            "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjY2OTEyOCwiZXhwIjoxNjg1MjYxMTI4fQ.FKNThQzlIuZCT75k9rPk6q6U-fyrNIr9jlUEKjDiAAw"
     })
     @POST("/api/sales/add")
     Call<ResultBase> createPostSales(@Part("title") RequestBody title,
@@ -80,7 +78,7 @@ public interface APIPostSales {
 
     @Headers({
             "Content-Type: application/json",
-            "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjUwNDYyMSwiZXhwIjoxNjg1MDk2NjIxfQ.xL_uudjTi0z1HMEz3AHIISvwwwdDKZ_SpPCTQQI6U4o"
+            "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjY2OTQ1MiwiZXhwIjoxNjg1MjYxNDUyfQ.S6megJcAmwwfF2jiiC1LWZsOy4xzv8UVyHsItJhwD-E"
     })
     @GET("/api/sales/getbytypeid")
     Call<ResultPostSales> getPostSalesByTypeGoodsID(@Query("id_type") int idType);

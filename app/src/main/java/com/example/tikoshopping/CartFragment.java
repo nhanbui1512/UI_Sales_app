@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -60,7 +62,10 @@ public class CartFragment extends Fragment {
 
     public void getAllProductInCart()
     {
-        APICart.apiService.getAllProduct().enqueue(new Callback<ResultCart>() {
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+
+        APICart.apiService.getAllProduct("Bearer "+ token ).enqueue(new Callback<ResultCart>() {
             @Override
             public void onResponse(Call<ResultCart> call, Response<ResultCart> response) {
                 ResultCart result = response.body();
@@ -80,6 +85,7 @@ public class CartFragment extends Fragment {
             @Override
             public void onFailure(Call<ResultCart> call, Throwable t) {
                 Log.e("API cart", t.getMessage());
+
             }
         });
 

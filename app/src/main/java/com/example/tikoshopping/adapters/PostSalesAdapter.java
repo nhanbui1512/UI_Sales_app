@@ -42,15 +42,13 @@ public class PostSalesAdapter extends RecyclerView.Adapter<PostSalesAdapter.View
         holder.discount.setText("Discount " + item.getDiscount()+ "% Off");
 //        holder.price.setText(item.getPrice().toString());
         Glide.with(context).load(_Constant.baseUrl+item.getImages().get(0).getPath()).into(holder.popImg);
-//        Picasso.get().load(mData.get(position).getImg_url()).into(holder.recImg);
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ProductDetailsActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                int idPost = item.getIDPost();
-//                intent.putExtra("idPost",idPost);
+
                 intent.putExtra("idPost",item.getIDPost());
                 intent.putExtra("Name",item.getTitle());
                 intent.putExtra("Price",item.getPrice());

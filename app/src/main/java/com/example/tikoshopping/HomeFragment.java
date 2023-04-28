@@ -57,8 +57,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_home_fragment,container,false);
 
-//         Tạo danh sách dữ liệu
-//        typeGoods = new ArrayList<TypeGoods>();
         recyclerViewType = view.findViewById(R.id.exp_rec);
         recyclerViewPosts = view.findViewById(R.id.pop_rec);
         recommendRecyclerView = view.findViewById(R.id.reccommended_rec);
@@ -94,7 +92,7 @@ public class HomeFragment extends Fragment {
 
 
     public void CallAPIPostSales(){
-        APIPostSales.apiService.getPostSalesRandom(4).enqueue(new Callback<ResultPostSales>() {
+        APIPostSales.apiService.getPostSalesRandom(10).enqueue(new Callback<ResultPostSales>() {
             @Override
             public void onResponse(Call<ResultPostSales> call, Response<ResultPostSales> response) {
                 ResultPostSales result = response.body();
@@ -127,7 +125,7 @@ public class HomeFragment extends Fragment {
         String token = sharedPreferences.getString("token", null);
 
 
-        APIPostSales.apiService.getPostSalesRandom(4).enqueue(new Callback<ResultPostSales>() {
+        APIPostSales.apiService.getPostSalesRandom(10).enqueue(new Callback<ResultPostSales>() {
             @Override
             public void onResponse(Call<ResultPostSales> call, Response<ResultPostSales> response) {
                 ResultPostSales result = response.body();

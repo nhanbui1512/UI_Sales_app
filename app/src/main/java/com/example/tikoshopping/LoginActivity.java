@@ -17,10 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tikoshopping.API.APILogin;
-import com.example.tikoshopping.Service.Local.IPV4;
 import com.example.tikoshopping.Service.Login;
 import com.example.tikoshopping.Service.LoginResult;
-import com.example.tikoshopping.adapters.ViewPagerAdapter;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -101,20 +99,18 @@ public class LoginActivity extends AppCompatActivity {
                 Log.e("API login", "Call API Thanh COng");
                 if(result != null && result.getResult()){ // Nếu đăng nhập tài khoản và mật khẩu đúng
 
-                    if (result.getUser().getAccess() == 0) {
+                    SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("token", result.getToken());
+                    editor.apply();
 
-                        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("token", result.getToken());
-                        editor.apply();
-
+                    if (result.getUser().getAccess() == 0) { // nếu người dùng là admin
                         startActivity(new Intent(LoginActivity.this,AdminActivity.class));
-
-                    } else  { // Nếu đăng nhập sai tài khoản hoặc mật khẩu
+                    } else  {
                         startActivity(new Intent(LoginActivity.this,ShopActivity.class));
                     }
                 }
-                else{
+                else{ // sai tài khoản or mật khẩu
                     Toast.makeText(LoginActivity.this, "Incorrect account or password", Toast.LENGTH_SHORT).show();
                 }
             }

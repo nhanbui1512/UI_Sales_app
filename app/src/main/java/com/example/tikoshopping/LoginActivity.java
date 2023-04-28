@@ -5,7 +5,9 @@ import static com.example.tikoshopping.R.id.userName_log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -39,6 +41,12 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.password_log);
         signUp = findViewById(R.id.sign_up);
         login = findViewById(log_btn);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+
+        String token = sharedPreferences.getString("token", null);
+
+        Log.e("token", token);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void callAPILogin(){
+
         String name = userName.getText().toString();
         String pass = password.getText().toString();
 
@@ -88,12 +97,20 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
                 LoginResult result = response.body();
                 Log.e("API login", "Call API Thanh COng");
-                if(result != null && result.getResult()){
-                    Log.e("Login " , result.getUser().getEmail());
-                    isLoginSuccess = result.getResult() ;
-                    startActivity(new Intent(LoginActivity.this,ShopActivity.class));
+                if(result != null && result.getResult()){ // Nếu đăng nhập tài khoản và mật khẩu đúng
+
+                    SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("token", result.getToken());
+                    editor.apply();
+
+                    if (result.getUser().getAccess() == 0) { // nếu người dùng là admin
+                        startActivity(new Intent(LoginActivity.this,AdminActivity.class));
+                    } else  {
+                        startActivity(new Intent(LoginActivity.this,ShopActivity.class));
+                    }
                 }
-                else{
+                else{ // sai tài khoản or mật khẩu
                     Toast.makeText(LoginActivity.this, "Incorrect account or password", Toast.LENGTH_SHORT).show();
                 }
             }

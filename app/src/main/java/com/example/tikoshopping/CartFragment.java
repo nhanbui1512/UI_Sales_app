@@ -6,13 +6,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.tikoshopping.API.APICart;
 import com.example.tikoshopping.API.APIService;
@@ -38,9 +41,9 @@ public class CartFragment extends Fragment {
     private RecyclerView ordersRecycleView;
     private ArrayList<CartItem> orders = new ArrayList<CartItem>();
     private CartAdapter cartAdapter;
-
     private Button btnthanhtoan;
 
+    private TextView total ;
 
 
 
@@ -50,6 +53,8 @@ public class CartFragment extends Fragment {
         View view = inflater.inflate(R.layout.cart_fragment,container,false);
         ordersRecycleView = view.findViewById(R.id.order_recycler);
         btnthanhtoan = view.findViewById(R.id.btnMuaHang);
+        total = view.findViewById(R.id.cart_price);
+
         getAllProductInCart();
         clickthanhtoan();
 
@@ -60,7 +65,10 @@ public class CartFragment extends Fragment {
 
     public void getAllProductInCart()
     {
-        APICart.apiService.getAllProduct().enqueue(new Callback<ResultCart>() {
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+
+        APICart.apiService.getAllProduct("Bearer "+ token ).enqueue(new Callback<ResultCart>() {
             @Override
             public void onResponse(Call<ResultCart> call, Response<ResultCart> response) {
                 ResultCart result = response.body();
@@ -71,6 +79,7 @@ public class CartFragment extends Fragment {
                     ordersRecycleView.setAdapter(cartAdapter);
                     LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
                     ordersRecycleView.setLayoutManager(layoutManager);
+                    total.setText(result.total.toString() + " VND");
                 }
                 else {
                     Log.e("Cart", "is empty");
@@ -80,6 +89,7 @@ public class CartFragment extends Fragment {
             @Override
             public void onFailure(Call<ResultCart> call, Throwable t) {
                 Log.e("API cart", t.getMessage());
+
             }
         });
 

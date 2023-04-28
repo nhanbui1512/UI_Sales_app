@@ -1,13 +1,9 @@
 package com.example.tikoshopping.API;
 
-import com.example.tikoshopping.Service.CartItem;
 import com.example.tikoshopping.Service.FormAddProductIntoCart;
-import com.example.tikoshopping.Service.Login;
-import com.example.tikoshopping.Service.LoginResult;
 import com.example.tikoshopping.Service.ResultAddProductIntoCart;
 import com.example.tikoshopping.Service.ResultBase;
 import com.example.tikoshopping.Service.ResultCart;
-import com.example.tikoshopping.Service.UserData;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -17,6 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -32,12 +29,9 @@ public interface APICart {
             .create(APICart.class);
 
     // Lấy ra tất cả sản phẩm trong giỏ hàng
-    @Headers({
-            "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjUwNDMwMCwiZXhwIjoxNjg1MDk2MzAwfQ.pGpiPOqL_FWBGnBoTq4agwFfbQi8bcwat7SU9VKwNBs"
-    })
+
     @GET("/api/cart/getall")
-    Call<ResultCart> getAllProduct ();
+    Call<ResultCart> getAllProduct (@Header("Authorization") String token);
 
 
     // Thêm 1 sản phẩm vào giỏ hàng

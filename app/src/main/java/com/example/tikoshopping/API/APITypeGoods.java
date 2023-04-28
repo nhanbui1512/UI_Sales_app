@@ -30,7 +30,7 @@ public interface APITypeGoods {
             .create(APITypeGoods.class);
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjUwNDYyMSwiZXhwIjoxNjg1MDk2NjIxfQ.xL_uudjTi0z1HMEz3AHIISvwwwdDKZ_SpPCTQQI6U4o"
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjY2OTQ1MiwiZXhwIjoxNjg1MjYxNDUyfQ.S6megJcAmwwfF2jiiC1LWZsOy4xzv8UVyHsItJhwD-E"
     })
     @GET("/api/type/getall")
     Call<ResultTypeGoods> getAllType();

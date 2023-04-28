@@ -46,8 +46,7 @@ public class TypeGoodsAdapter extends RecyclerView.Adapter<TypeGoodsAdapter.View
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ViewAllActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                intent.putExtra("idType",item.getIDType());
+//
                 intent.putExtra("IDType",item.getIDType());
                 context.startActivity(intent);
             }

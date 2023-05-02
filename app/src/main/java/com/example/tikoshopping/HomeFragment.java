@@ -69,11 +69,15 @@ public class HomeFragment extends Fragment {
 
 
     public void CallAPITypeGood(){
-        APITypeGoods.apiService.getAllType().enqueue(new Callback<ResultTypeGoods>() {
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+
+        APITypeGoods.apiService.getAllType("Bearer " +token).enqueue(new Callback<ResultTypeGoods>() {
             @Override
             public void onResponse(Call<ResultTypeGoods> call, Response<ResultTypeGoods> response) {
                     ResultTypeGoods result  = response.body();
-                    if(result != null ){
+                    if(result != null && result.getResult() ){
                         typeGoods = result.getData();
                         typeAdapter = new TypeGoodsAdapter(typeGoods,getContext());
                         recyclerViewType.setAdapter(typeAdapter);
@@ -92,11 +96,15 @@ public class HomeFragment extends Fragment {
 
 
     public void CallAPIPostSales(){
-        APIPostSales.apiService.getPostSalesRandom(10).enqueue(new Callback<ResultPostSales>() {
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+
+        APIPostSales.apiService.getPostSalesRandom("Bearer "+token,10).enqueue(new Callback<ResultPostSales>() {
             @Override
             public void onResponse(Call<ResultPostSales> call, Response<ResultPostSales> response) {
                 ResultPostSales result = response.body();
-                if(result != null ){
+                if(result != null && result.getResult() ){
                     Log.e("API postsales" ,response.body().toString());
                     posts = result.getData();
                     postSalesAdapter = new PostSalesAdapter(posts,getContext());
@@ -121,11 +129,10 @@ public class HomeFragment extends Fragment {
 
     public void CallAPIRecommended(){
 
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Mypref", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);
 
-
-        APIPostSales.apiService.getPostSalesRandom(10).enqueue(new Callback<ResultPostSales>() {
+        APIPostSales.apiService.getPostSalesRandom("Bearer "+token,10).enqueue(new Callback<ResultPostSales>() {
             @Override
             public void onResponse(Call<ResultPostSales> call, Response<ResultPostSales> response) {
                 ResultPostSales result = response.body();

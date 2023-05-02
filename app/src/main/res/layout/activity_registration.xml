@@ -26,7 +26,7 @@
         android:drawablePadding="13dp"
         android:elevation="3dp"
         android:padding="13dp"
-        android:text="Họ tên"
+        android:text="UserName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/products_reg"
@@ -48,6 +48,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_name"
         app:layout_constraintWidth_percent=".8" />
+
 
     <EditText
         android:id="@+id/password_reg"

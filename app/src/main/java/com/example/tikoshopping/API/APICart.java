@@ -35,12 +35,9 @@ public interface APICart {
 
 
     // Thêm 1 sản phẩm vào giỏ hàng
-    @Headers({
-            "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjUwNDYyMSwiZXhwIjoxNjg1MDk2NjIxfQ.xL_uudjTi0z1HMEz3AHIISvwwwdDKZ_SpPCTQQI6U4o"
-    })
+
     @POST("/api/cart/addproduct")
-    Call<ResultAddProductIntoCart> AddProductInCart(@Body FormAddProductIntoCart form);
+    Call<ResultAddProductIntoCart> AddProductInCart(@Header("Authorization") String token,@Body FormAddProductIntoCart form);
 
 
 
@@ -53,21 +50,14 @@ public interface APICart {
 
 
 //     Xóa 1 Sản phẩm trong giỏ hàng
-    @Headers({
-            "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjUwNDMwMCwiZXhwIjoxNjg1MDk2MzAwfQ.pGpiPOqL_FWBGnBoTq4agwFfbQi8bcwat7SU9VKwNBs"
-    })
+
     @DELETE("/api/cart/delete")
-    Call<ResultBase> DeleteProductInCart (@Query("id_cart") int idCart);
+    Call<ResultBase> DeleteProductInCart (@Header("Authorization") String token ,@Query("id_cart") int idCart);
 
     // Xóa tất cả sản phẩm trong giỏ hàng
 
-    @Headers({
-            "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjUwNDMwMCwiZXhwIjoxNjg1MDk2MzAwfQ.pGpiPOqL_FWBGnBoTq4agwFfbQi8bcwat7SU9VKwNBs"
-    })
     @DELETE("/api/cart/deleteall")
-    Call<ResultBase> DeleteAllInCart ();
+    Call<ResultBase> DeleteAllInCart (@Header("Authorization") String token);
 
 
 }

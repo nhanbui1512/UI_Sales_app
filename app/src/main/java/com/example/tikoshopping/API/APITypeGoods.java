@@ -15,6 +15,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -24,16 +25,12 @@ public interface APITypeGoods {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
     APITypeGoods apiService = new Retrofit.Builder()
             .baseUrl(_Constant.baseUrl)
-//            .baseUrl("http://192.168.5.240:3000")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(APITypeGoods.class);
-    @Headers({
-            "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjY2OTQ1MiwiZXhwIjoxNjg1MjYxNDUyfQ.S6megJcAmwwfF2jiiC1LWZsOy4xzv8UVyHsItJhwD-E"
-    })
+
     @GET("/api/type/getall")
-    Call<ResultTypeGoods> getAllType();
+    Call<ResultTypeGoods> getAllType(@Header("Authorization") String token);
 
 
 

@@ -3,7 +3,9 @@ package com.example.tikoshopping;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -97,11 +99,15 @@ public class ProductDetailsActivity extends AppCompatActivity {
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                SharedPreferences sharedPreferences = getSharedPreferences("Mypref", Context.MODE_PRIVATE);
+                String token = sharedPreferences.getString("token", null);
+
                 int idPost = getIntent().getIntExtra("idPost",0);
                 int count = Integer.parseInt(quantity.getText().toString());
 
                 FormAddProductIntoCart form = new FormAddProductIntoCart(idPost, count);
-                APICart.apiService.AddProductInCart(form).enqueue(new Callback<ResultAddProductIntoCart>() {
+                APICart.apiService.AddProductInCart(token,form).enqueue(new Callback<ResultAddProductIntoCart>() {
                     @Override
                     public void onResponse(Call<ResultAddProductIntoCart> call, Response<ResultAddProductIntoCart> response) {
                         ResultAddProductIntoCart result = response.body();

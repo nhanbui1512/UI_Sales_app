@@ -41,13 +41,8 @@ public interface APIPostSales {
 
 
 
-
-    @Headers({
-            "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjY2OTQ1MiwiZXhwIjoxNjg1MjYxNDUyfQ.S6megJcAmwwfF2jiiC1LWZsOy4xzv8UVyHsItJhwD-E"
-    })
     @GET("/api/sales/getrand")
-    Call<ResultPostSales> getPostSalesRandom(@Query("rand_number") int randNumber);
+    Call<ResultPostSales> getPostSalesRandom(@Header("Authorization") String token,@Query("rand_number") int randNumber);
 
 
     @GET("/api/sales/getrand")
@@ -56,32 +51,22 @@ public interface APIPostSales {
 
 
     // Xóa bài bán hàng
-    @Headers({
-            "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjY2OTEyOCwiZXhwIjoxNjg1MjYxMTI4fQ.FKNThQzlIuZCT75k9rPk6q6U-fyrNIr9jlUEKjDiAAw"
-    })
+
     @DELETE("/api/sales/delete")
-    Call<ResultBase> DeletePostSales (@Query("id_post") int idPost);
+    Call<ResultBase> DeletePostSales (@Header("Authorization") String token,@Query("id_post") int idPost);
 
     // Tạo 1 bài bán hàng
 
-    @Headers({
-            "Content-Type: application/json",
-            "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjY2OTEyOCwiZXhwIjoxNjg1MjYxMTI4fQ.FKNThQzlIuZCT75k9rPk6q6U-fyrNIr9jlUEKjDiAAw"
-    })
     @POST("/api/sales/add")
-    Call<ResultBase> createPostSales(@Part("title") RequestBody title,
+    Call<ResultBase> createPostSales(@Header("Authorization") String token ,
+                                     @Part("title") RequestBody title,
                                      @Part("description") RequestBody description,
                                      @Part("idType") RequestBody idType,
                                      @Part List<MultipartBody.Part> photos);
 
 
-    @Headers({
-            "Content-Type: application/json",
-            "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjY2OTQ1MiwiZXhwIjoxNjg1MjYxNDUyfQ.S6megJcAmwwfF2jiiC1LWZsOy4xzv8UVyHsItJhwD-E"
-    })
     @GET("/api/sales/getbytypeid")
-    Call<ResultPostSales> getPostSalesByTypeGoodsID(@Query("id_type") int idType);
+    Call<ResultPostSales> getPostSalesByTypeGoodsID(@Header("Authorization") String token,@Query("id_type") int idType);
 
 
 }

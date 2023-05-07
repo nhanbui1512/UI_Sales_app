@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -44,11 +46,15 @@ public class ViewAllActivity extends AppCompatActivity {
 
 
     public void CallAPIPostSalesByType(int idType){
-        APIPostSales.apiService.getPostSalesByTypeGoodsID(idType).enqueue(new Callback<ResultPostSales>() {
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+
+        APIPostSales.apiService.getPostSalesByTypeGoodsID("Bearer "+token,idType).enqueue(new Callback<ResultPostSales>() {
             @Override
             public void onResponse(Call<ResultPostSales> call, Response<ResultPostSales> response) {
                 ResultPostSales result = response.body();
-                if(result != null ){
+                if(result != null && result.getResult() ){
                     postSalesArrayList = result.getData();
                     postsByTypeAdapter = new PostsByTypeAdapter(postSalesArrayList,findViewById(R.id.view_all_rec));
                     recyclerView.setAdapter(postsByTypeAdapter);

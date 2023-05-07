@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-
         String token = sharedPreferences.getString("token", null);
+
 
 
         super.onCreate(savedInstanceState);
@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(new Intent(MainActivity.this, LoginActivity.class));
                         }
                     }
+
                 }
 
                 @Override

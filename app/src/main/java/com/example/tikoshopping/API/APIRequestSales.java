@@ -15,6 +15,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -30,30 +31,18 @@ public interface APIRequestSales {
             .create(APIRequestSales.class);
 
 
-    @Headers({
-            "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjQyMjMwMSwiZXhwIjoxNjg1MDE0MzAxfQ.z-9xUBo-eIxX8-uqTUU_hOB2SUjogUS8AEApUq_5S58"
-    })
     // Đăng ký tài khoản bán hàng
     @POST("/api/user/registerSales")
-    Call<ResultBase> Register(@Body FormRequest form);
+    Call<ResultBase> Register(@Header("Authorization") String token, @Body FormRequest form);
 
 
     // Lấy ra tất cả request
 
-    @Headers({
-            "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjQyMjMwMSwiZXhwIjoxNjg1MDE0MzAxfQ.z-9xUBo-eIxX8-uqTUU_hOB2SUjogUS8AEApUq_5S58"
-    })
     @GET("/api/user/allrequest")
-    Call<ResultAllRequest> GetAllRequest();
+    Call<ResultAllRequest> GetAllRequest(@Header("Authorization") String token);
 
 
-    @Headers({
-            "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjQyMjMwMSwiZXhwIjoxNjg1MDE0MzAxfQ.z-9xUBo-eIxX8-uqTUU_hOB2SUjogUS8AEApUq_5S58"
-    })
     @PUT("/api/user/acceptrequeset")
-    Call<ResultBase> AcceptRequest (@Query("id_request") int idRequest) ;
+    Call<ResultBase> AcceptRequest (@Header ("Authorization")String token,@Query("id_request") int idRequest) ;
 
 }

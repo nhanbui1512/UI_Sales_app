@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.example.tikoshopping.AdminProfileActivity;
 import com.example.tikoshopping.CartFragment;
 import com.example.tikoshopping.HomeAdminFragment;
 import com.example.tikoshopping.HomeFragment;
@@ -42,7 +43,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             case 4:
                 return new PendingFragment();
             case 5:
-                return new ProfileFragment();
+                return new AdminProfileActivity();
         }
         return new HomeAdminFragment();
     }

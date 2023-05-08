@@ -1,5 +1,6 @@
 package com.example.tikoshopping.API;
 
+import com.example.tikoshopping.Service.Admin.ResultAllUser;
 import com.example.tikoshopping.Service.PassWord;
 import com.example.tikoshopping.Service.ResultBase;
 import com.example.tikoshopping.Service.ResultMyProfile;
@@ -30,6 +31,9 @@ public interface APIUser {
 
     @GET("/api/user/myprofile")
     Call<ResultMyProfile> getMyProfile(@Header("Authorization") String token);
+
+    @GET("/api/user/getallsalesaccount")
+    Call<ResultAllUser> getAllSalesAccount (@Header("Authorization") String token);
 
 
     @Headers({

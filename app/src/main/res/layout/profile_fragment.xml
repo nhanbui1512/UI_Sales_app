@@ -10,12 +10,14 @@
 
     <ImageView
         android:id="@+id/profile_img"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:src="@drawable/profile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="15dp"/>
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/pro_name"
@@ -140,20 +142,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_sua"
         app:layout_constraintVertical_bias="0.169" />
-
-    <Button
-        android:layout_width="158dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="16dp"
-        android:layout_weight="1"
-        android:padding="9dp"
-        android:text="Đăng xuất"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_up" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

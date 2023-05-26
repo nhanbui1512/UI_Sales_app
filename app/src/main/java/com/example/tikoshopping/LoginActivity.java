@@ -47,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
 
         String token = sharedPreferences.getString("token", null);
 
-//        Log.e("token", token);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

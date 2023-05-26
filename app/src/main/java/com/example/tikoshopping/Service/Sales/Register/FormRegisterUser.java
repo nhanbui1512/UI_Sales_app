@@ -1,4 +1,4 @@
-package com.example.tikoshopping.Service.Register;
+package com.example.tikoshopping.Service.Sales.Register;
 
 public class FormRegisterUser {
     public String user_name ;

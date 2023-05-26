@@ -62,7 +62,7 @@ public interface APIPostSales {
                                      @Part("title") RequestBody title,
                                      @Part("description") RequestBody description,
                                      @Part("idType") RequestBody idType,
-                                     @Part List<MultipartBody.Part> photos);
+                                     @Part MultipartBody photos);
 
 
     @GET("/api/sales/getbytypeid")

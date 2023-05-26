@@ -70,6 +70,6 @@ public interface APIPostSales {
 
 
     @GET("/api/sales/findname")
-    Call<ResultPostSales> findIncludeName (@Header("Authorization") String token ,@Query("name") String namePost);
+    Call<ResultPostSales> findIncludeName (@Header("Authorization") String token ,@Query("name") String name);
 
 }

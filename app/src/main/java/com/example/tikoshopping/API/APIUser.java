@@ -9,6 +9,8 @@ import com.example.tikoshopping.Service.UserData;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -16,8 +18,10 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface APIUser {
@@ -55,6 +59,9 @@ public interface APIUser {
     @PUT("/api/user/update")
     Call<ResultBase> UpdateUser ( @Body User user);
 
+    @Multipart
+    @POST("/api/user/changeavatar")
+    Call<ResultBase> ChangeAvatar( @Header("Authorization") String token , @Part MultipartBody.Part photo);
 
 
 

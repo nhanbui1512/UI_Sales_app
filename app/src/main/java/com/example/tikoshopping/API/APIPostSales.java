@@ -58,7 +58,11 @@ public interface APIPostSales {
     // Tạo 1 bài bán hàng
 
     @POST("/api/sales/add")
-    Call<ResultBase> createPostSales(@Header("Authorization") String token , @Body RequestBody form);
+    Call<ResultBase> createPostSales(@Header("Authorization") String token ,
+                                     @Part("title") RequestBody title,
+                                     @Part("description") RequestBody description,
+                                     @Part("idType") RequestBody idType,
+                                     @Part MultipartBody photos);
 
 
     @GET("/api/sales/getbytypeid")

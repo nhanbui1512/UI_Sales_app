@@ -76,6 +76,7 @@ public class HomeFragment extends Fragment {
 
 
         //search view
+        recyclerViewSearch = view.findViewById(R.id.search_rec);
         search_box = view.findViewById(R.id.search_box);
         recyclerViewSearch.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewSearch.setAdapter(viewAllAdapter);

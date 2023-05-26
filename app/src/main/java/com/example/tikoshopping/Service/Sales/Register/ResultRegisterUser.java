@@ -1,4 +1,4 @@
-package com.example.tikoshopping.Service.Register;
+package com.example.tikoshopping.Service.Sales.Register;
 
 import com.example.tikoshopping.Service.User;
 

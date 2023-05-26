@@ -33,9 +33,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.tikoshopping.API.APIUser;
+import com.example.tikoshopping.API._Constant;
 import com.example.tikoshopping.Service.ResultBase;
 import com.example.tikoshopping.Service.ResultMyProfile;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -54,7 +60,7 @@ public class ProfileFragment extends Fragment {
     private EditText inputUserName ;
     private EditText inputEmail ;
     private EditText inputPhoneNumber ;
-    private ImageView avatar ;
+    private ImageView AvatarPath ;
     private Button Sua,DoiMK,Up;
 
     private ActivityResultLauncher<Intent> imagePickerLauncher;
@@ -68,7 +74,7 @@ public class ProfileFragment extends Fragment {
         inputUserName = view.findViewById(R.id.pro_name);
         inputEmail = view.findViewById(R.id.pro_email);
         inputPhoneNumber = view.findViewById(R.id.pro_number);
-        avatar = view.findViewById(R.id.profile_img);
+        AvatarPath = view.findViewById(R.id.profile_image);
         Sua = view.findViewById(R.id.btn_sua);
         DoiMK = view.findViewById(R.id.btn_doimk);
         Up = view.findViewById(R.id.btn_up);
@@ -91,7 +97,7 @@ public class ProfileFragment extends Fragment {
         });
 
 
-        avatar.setOnClickListener(new View.OnClickListener() {
+        AvatarPath.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -146,7 +152,7 @@ public class ProfileFragment extends Fragment {
                             }
                         });
 
-                        avatar.setImageURI(selectedImageUri);
+                        AvatarPath.setImageURI(selectedImageUri);
                     }
                 });
 
@@ -184,7 +190,11 @@ public class ProfileFragment extends Fragment {
                     inputEmail.setText(result.getData().getEmail());
                     inputPhoneNumber.setText(result.getData().getPhoneNumber());
                     inputUserName.setText(result.getData().getUserName());
-
+                    String avatarPath = result.getData().getAvatarPath();
+                    Glide.with(requireContext())
+                            .load(_Constant.baseUrl+avatarPath)
+                            .apply(RequestOptions.circleCropTransform())
+                            .into(AvatarPath);
                 }
                 else {
                     Log.e("Profile", "Du lieu trong");

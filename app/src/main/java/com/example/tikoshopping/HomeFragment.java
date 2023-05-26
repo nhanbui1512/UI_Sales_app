@@ -9,10 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.example.tikoshopping.API.APIPostSales;
 import com.example.tikoshopping.API.APITypeGoods;
@@ -20,11 +23,14 @@ import com.example.tikoshopping.Service.ResultPostSales;
 import com.example.tikoshopping.Service.ResultRecommended;
 import com.example.tikoshopping.Service.ResultTypeGoods;
 import com.example.tikoshopping.adapters.PostSalesAdapter;
+import com.example.tikoshopping.adapters.PostsByTypeAdapter;
 import com.example.tikoshopping.adapters.RecommenAdapter;
 import com.example.tikoshopping.adapters.TypeGoodsAdapter;
+import com.example.tikoshopping.adapters.ViewPagerAdapter;
 import com.example.tikoshopping.models.PostSales;
 import com.example.tikoshopping.models.RecommendedModel;
 import com.example.tikoshopping.models.TypeGoods;
+import com.example.tikoshopping.models.ViewAllModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +57,13 @@ public class HomeFragment extends Fragment {
     private ArrayList<PostSales> recommendPosts = new ArrayList<PostSales>();
     private RecommenAdapter recommenAdapter;
 
+    /// Search view
+
+    EditText search_box;
+    private ArrayList<PostSales> viewAllModelList;
+    private RecyclerView recyclerViewSearch;
+    private PostsByTypeAdapter viewAllAdapter;
+
 
     @Nullable
     @Override
@@ -60,6 +73,13 @@ public class HomeFragment extends Fragment {
         recyclerViewType = view.findViewById(R.id.exp_rec);
         recyclerViewPosts = view.findViewById(R.id.pop_rec);
         recommendRecyclerView = view.findViewById(R.id.reccommended_rec);
+
+
+        //search view
+        search_box = view.findViewById(R.id.search_box);
+        recyclerViewSearch.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewSearch.setAdapter(viewAllAdapter);
+        recyclerViewSearch.setHasFixedSize(true);
 
         CallAPITypeGood();
         CallAPIPostSales();
@@ -125,6 +145,36 @@ public class HomeFragment extends Fragment {
         });
     }
 
+
+    public void SearchBox()
+    {
+        search_box.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.toString().isEmpty()){
+                    viewAllModelList.clear();
+                    viewAllAdapter.notifyDataSetChanged();
+                }
+                else{
+                    searchProduct(s.toString());
+                }
+            }
+        });
+    }
+
+    private void searchProduct(String type) {
+        
+    }
 
 
     public void CallAPIRecommended(){

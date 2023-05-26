@@ -53,6 +53,7 @@
         android:text="Vagetable"
         android:textColor="@color/orange"
         android:textSize="25sp"
+        android:maxLines="2"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailed_img"
@@ -63,28 +64,25 @@
         android:id="@+id/detailed_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:text="Giá: 25000 VND"
         android:textColor="@color/orange"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.931"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailed_img" />
+        app:layout_constraintTop_toBottomOf="@+id/detailed_name" />
 
     <TextView
         android:id="@+id/detailed_des"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:text="Mô tả"
         android:textColor="@color/orange"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailed_name" />
+        app:layout_constraintTop_toBottomOf="@+id/detailed_price" />
 
     <TextView
         android:id="@+id/detailed_description"

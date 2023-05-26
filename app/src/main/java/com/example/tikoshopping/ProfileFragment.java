@@ -39,7 +39,9 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.tikoshopping.API.APIUser;
 import com.example.tikoshopping.API._Constant;
+import com.example.tikoshopping.Service.ResultBase;
 import com.example.tikoshopping.Service.ResultMyProfile;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -72,7 +74,7 @@ public class ProfileFragment extends Fragment {
         inputUserName = view.findViewById(R.id.pro_name);
         inputEmail = view.findViewById(R.id.pro_email);
         inputPhoneNumber = view.findViewById(R.id.pro_number);
-        AvatarPath = view.findViewById(R.id.profile_img);
+        AvatarPath = view.findViewById(R.id.profile_image);
         Sua = view.findViewById(R.id.btn_sua);
         DoiMK = view.findViewById(R.id.btn_doimk);
         Up = view.findViewById(R.id.btn_up);
@@ -95,7 +97,7 @@ public class ProfileFragment extends Fragment {
         });
 
 
-        avatar.setOnClickListener(new View.OnClickListener() {
+        AvatarPath.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -150,7 +152,7 @@ public class ProfileFragment extends Fragment {
                             }
                         });
 
-                        avatar.setImageURI(selectedImageUri);
+                        AvatarPath.setImageURI(selectedImageUri);
                     }
                 });
 

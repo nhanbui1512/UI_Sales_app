@@ -11,8 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tikoshopping.API.APIRegister;
-import com.example.tikoshopping.Service.Register.FormRegisterUser;
-import com.example.tikoshopping.Service.Register.ResultRegisterUser;
+import com.example.tikoshopping.Service.Sales.Register.FormRegisterUser;
+import com.example.tikoshopping.Service.Sales.Register.ResultRegisterUser;
 
 import retrofit2.Call;
 import retrofit2.Callback;

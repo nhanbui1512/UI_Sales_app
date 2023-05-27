@@ -41,12 +41,9 @@ public interface APICart {
 
 
 
-    @Headers({
-            "Content-Type: application/json",
-            "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRFVzZXIiOjEsImFjY2VzcyI6MCwidXNlck5hbWUiOiJhZG1pbiIsImlhdCI6MTY4MjUwNDMwMCwiZXhwIjoxNjg1MDk2MzAwfQ.pGpiPOqL_FWBGnBoTq4agwFfbQi8bcwat7SU9VKwNBs"
-    })
+
     @PUT("/api/cart/updatecount")
-    Call<ResultBase> UpdateCountProductInCart (@Query("id_cart") int idCart, @Query("count") int count);
+    Call<ResultBase> UpdateCountProductInCart ( @Header("Authorization") String token , @Query("id_cart") int idCart, @Query("count") int count);
 
 
 //     Xóa 1 Sản phẩm trong giỏ hàng

@@ -9,10 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.example.tikoshopping.API.APIPostSales;
 import com.example.tikoshopping.API.APITypeGoods;
@@ -20,11 +23,14 @@ import com.example.tikoshopping.Service.ResultPostSales;
 import com.example.tikoshopping.Service.ResultRecommended;
 import com.example.tikoshopping.Service.ResultTypeGoods;
 import com.example.tikoshopping.adapters.PostSalesAdapter;
+import com.example.tikoshopping.adapters.PostsByTypeAdapter;
 import com.example.tikoshopping.adapters.RecommenAdapter;
 import com.example.tikoshopping.adapters.TypeGoodsAdapter;
+import com.example.tikoshopping.adapters.ViewPagerAdapter;
 import com.example.tikoshopping.models.PostSales;
 import com.example.tikoshopping.models.RecommendedModel;
 import com.example.tikoshopping.models.TypeGoods;
+import com.example.tikoshopping.models.ViewAllModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +57,13 @@ public class HomeFragment extends Fragment {
     private ArrayList<PostSales> recommendPosts = new ArrayList<PostSales>();
     private RecommenAdapter recommenAdapter;
 
+    /// Search view
+
+    EditText search_box;
+    private ArrayList<PostSales> resultSearch = new ArrayList<PostSales>();
+    private RecyclerView recyclerViewSearch;
+    private PostSalesAdapter searchAdapter;
+
 
     @Nullable
     @Override
@@ -61,9 +74,45 @@ public class HomeFragment extends Fragment {
         recyclerViewPosts = view.findViewById(R.id.pop_rec);
         recommendRecyclerView = view.findViewById(R.id.reccommended_rec);
 
+
+
+
+
+
+        //search view
+        recyclerViewSearch = view.findViewById(R.id.search_rec);
+        search_box = view.findViewById(R.id.search_box);
+        recyclerViewSearch.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewSearch.setAdapter(searchAdapter);
+        recyclerViewSearch.setHasFixedSize(true);
+
+        search_box.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(editable.toString().trim() == ""){
+                    resultSearch.clear();
+                    searchAdapter.notifyDataSetChanged();
+                    return;
+                }
+                searchProduct(editable.toString());
+            }
+        });
+
         CallAPITypeGood();
         CallAPIPostSales();
         CallAPIRecommended();
+
+
         return view;
     }
 
@@ -125,6 +174,44 @@ public class HomeFragment extends Fragment {
         });
     }
 
+
+
+    private void searchProduct(String inputSearch) {
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+
+        APIPostSales.apiService.findIncludeName("Bearer " + token, inputSearch).enqueue(new Callback<ResultPostSales>() {
+            @Override
+            public void onResponse(Call<ResultPostSales> call, Response<ResultPostSales> response) {
+                ResultPostSales res = response.body();
+
+                if(res != null && res.getResult()){
+
+                    resultSearch.clear();
+
+                    resultSearch = res.getData();
+
+                    searchAdapter = new PostSalesAdapter(resultSearch, getContext());
+
+                    recyclerViewSearch.setAdapter(searchAdapter);
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+                    recyclerViewSearch.setLayoutManager(layoutManager);
+
+
+                }
+                else {
+
+                    Log.e("Search", "Call API that bai");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultPostSales> call, Throwable t) {
+                Log.e("Search", t.getMessage());
+            }
+        });
+    }
 
 
     public void CallAPIRecommended(){

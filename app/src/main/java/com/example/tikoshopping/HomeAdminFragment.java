@@ -46,7 +46,6 @@ public class HomeAdminFragment extends Fragment {
         recyclerViewSale = view.findViewById(R.id.sale_rec);
 
         callAPIUser();
-
         return view;
     }
     @Override
@@ -72,6 +71,25 @@ public class HomeAdminFragment extends Fragment {
                     recyclerViewSale.setAdapter(SaleAdapter);
                     LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
                     recyclerViewSale.setLayoutManager(layoutManager);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultAllUser> call, Throwable t) {
+
+            }
+        });
+
+        APIUser.apiService.getAllUsersAccount("Bearer " + token).enqueue(new Callback<ResultAllUser>() {
+            @Override
+            public void onResponse(Call<ResultAllUser> call, Response<ResultAllUser> response) {
+                ResultAllUser res = response.body();
+                if(res.result == true && res != null){
+                    CustomerList = res.data;
+                    CustomerAdapter = new UserAdapter(getContext(),SaleList);
+                    recyclerViewCustomer.setAdapter(CustomerAdapter);
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+                    recyclerViewCustomer.setLayoutManager(layoutManager);
                 }
             }
 

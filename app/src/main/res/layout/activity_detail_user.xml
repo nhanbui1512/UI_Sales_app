@@ -86,36 +86,16 @@
         app:layout_constraintTop_toBottomOf="@+id/edt_user_mail"
         app:layout_constraintWidth_percent=".8" />
 
-    <EditText
-        android:editable="false"
-        android:focusable="false"
-        android:id="@+id/edt_user_address"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/edittext_background"
-        android:drawableLeft="@drawable/ic_baseline_add_location_24"
-        android:drawablePadding="10dp"
-        android:elevation="3dp"
-        android:hint="Your Address"
-        android:padding="13dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_user_phone"
-        app:layout_constraintWidth_percent=".8" />
-
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_block"
         android:layout_width="237dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="108dp"
         android:background="@drawable/oval_button"
         android:text="BLOCK"
-        android:textColor="@color/white"
         android:textAlignment="center"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_user_address"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

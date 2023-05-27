@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout_item_user"
+    android:id="@+id/layout_item_request"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -23,11 +23,30 @@
                 android:textSize="16dp"
                 android:textStyle="bold"/>
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_user_id"
+                android:id="@+id/tv_request_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:text="01"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold"/>
+            <com.google.android.material.textview.MaterialTextView
+                android:paddingLeft="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID User: "
+                android:textColor="@color/orange"
+                android:layout_gravity="left"
+                android:textSize="16dp"
+                android:textStyle="bold"/>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_request_user_id"
+                android:layout_gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="2"
                 android:textColor="@color/black"
                 android:textSize="16dp"
                 android:textStyle="bold"/>
@@ -41,12 +60,12 @@
                 android:textSize="16dp"
                 android:textStyle="bold"/>
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_user_phone"
+                android:id="@+id/tv_request_user_phone"
                 android:layout_gravity="right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:text="0987654321"
+                android:text="0121911911"
                 android:textColor="@color/black"
                 android:textSize="16dp"
                 android:textStyle="bold"/>
@@ -59,17 +78,37 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name: "
+                android:text="Create At: "
                 android:textColor="@color/orange"
                 android:textSize="16dp"
                 android:textStyle="bold"/>
+
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_user_name"
-                android:layout_width="match_parent"
+                android:id="@+id/tv_request_create_at"
+                android:layout_width="181dp"
                 android:layout_height="wrap_content"
-                android:text="Nguyen Van A"
-                android:textColor="@color/black"
                 android:paddingLeft="10dp"
+                android:text="2023-05-27T05:12:34"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+            <com.google.android.material.textview.MaterialTextView
+                android:paddingLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stastus: "
+                android:textColor="@color/orange"
+                android:layout_gravity="left"
+                android:textSize="16dp"
+                android:textStyle="bold"/>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_request_status"
+                android:layout_gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="Yes"
+                android:textColor="@color/black"
                 android:textSize="16dp"
                 android:textStyle="bold"/>
         </LinearLayout>

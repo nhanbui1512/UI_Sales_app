@@ -1,6 +1,9 @@
 package com.example.tikoshopping.API;
 
+import com.example.tikoshopping.Service.Admin.ResultAllUser;
 import com.example.tikoshopping.Service.PassWord;
+import com.example.tikoshopping.Service.RequestSales.Request;
+import com.example.tikoshopping.Service.ResultAllRequest;
 import com.example.tikoshopping.Service.ResultBase;
 import com.example.tikoshopping.Service.ResultMyProfile;
 import com.example.tikoshopping.Service.ResultTypeGoods;
@@ -35,6 +38,11 @@ public interface APIUser {
     @GET("/api/user/myprofile")
     Call<ResultMyProfile> getMyProfile(@Header("Authorization") String token);
 
+    @GET("/api/user/getallsalesaccount")
+    Call<ResultAllUser> getAllSalesAccount (@Header("Authorization") String token);
+
+    @GET("/api/user/getalluseraccount")
+    Call<ResultAllUser> getAllUsersAccount (@Header("Authorization") String token);
 
     @Headers({
             "Content-Type: application/json",
@@ -44,7 +52,10 @@ public interface APIUser {
 
 
     @GET("/api/user/find")
-    Call<User> findUserById(@Query("id") int idUser);
+    Call<User> findUserById(@Header("Authorization") String token, @Query("id") int idUser);
+
+    @GET("/api/user/allrequest")
+    Call<ResultAllRequest> GetAllRequest(@Header("Authorization") String token);
 
     @GET("/api/user/findname")
     Call<UserData> findUserIncludeName(@Query("user_name") String userName);

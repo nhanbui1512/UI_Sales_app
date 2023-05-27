@@ -26,17 +26,6 @@
                 android:text="Customer Account"
                 android:textStyle="bold|italic"
                 android:textSize="18dp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/view_all_customer_account"
-                android:text="View All"
-                android:textStyle="bold|italic"
-                android:gravity="end"
-                android:layout_marginRight="7dp"
-                android:layout_weight="1"
-                android:textSize="16dp"
-                android:textColor="@color/orange"/>
 
         </LinearLayout>
 
@@ -63,17 +52,6 @@
                 android:text="Sale Account"
                 android:textStyle="bold|italic"
                 android:textSize="18dp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/view_all_sale_account"
-                android:text="View All"
-                android:textStyle="bold|italic"
-                android:gravity="end"
-                android:layout_marginRight="7dp"
-                android:layout_weight="1"
-                android:textSize="16dp"
-                android:textColor="@color/orange"/>
 
         </LinearLayout>
 

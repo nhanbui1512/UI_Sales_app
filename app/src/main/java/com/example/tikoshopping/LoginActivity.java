@@ -122,6 +122,5 @@ public class LoginActivity extends AppCompatActivity {
                 isLoginSuccess = false;
             }
         });
-
     }
 }

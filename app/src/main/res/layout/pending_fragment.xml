@@ -4,26 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".PendingFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <EditText
-            android:elevation="3dp"
-            android:id="@+id/search_box"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:drawableLeft="@drawable/ic_baseline_search_24"
-            android:padding="13dp"
-            android:hint="Tên shop/ ID shop"
-            android:textSize="20dp"
-            android:textColorHint="@color/orange"
-            android:textColor="@color/orange"
-            android:drawablePadding="5dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,22 +26,11 @@
                 android:text="Pending List"
                 android:textStyle="bold|italic"
                 android:textSize="18dp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/view_all_popular"
-                android:text="View All"
-                android:textStyle="bold|italic"
-                android:gravity="end"
-                android:layout_marginRight="7dp"
-                android:layout_weight="1"
-                android:textSize="16dp"
-                android:textColor="@color/orange"/>
 
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/pop_rec"
+            android:id="@+id/pending_rec"
             android:layout_width="match_parent"
             android:layout_height="633dp"
             android:layout_margin="5dp" />
